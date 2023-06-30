@@ -1,15 +1,13 @@
 package com.QuizApplication.repository;
 
 import com.QuizApplication.model.Quiz;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import jakarta.servlet.annotation.WebServlet;
 
 import java.util.List;
 
 @WebServlet("/quiz")
+@PersistenceContext
 public class QuizRepository {
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
     EntityManager entityManager = emFactory.createEntityManager();

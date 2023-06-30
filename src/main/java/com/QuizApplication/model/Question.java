@@ -12,6 +12,7 @@ import java.util.List;
 public class Question {
 
     @Id
+    @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String question;

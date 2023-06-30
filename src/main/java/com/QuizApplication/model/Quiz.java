@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class Quiz {
 
     @Id
+    @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
