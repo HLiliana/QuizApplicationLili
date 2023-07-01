@@ -1,16 +1,20 @@
 package com.QuizApplication.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "quizzes")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Quiz {
 
     @Id
@@ -41,6 +45,4 @@ public class Quiz {
         this.difficulty = difficulty;
     }
 
-    public Quiz() {
-    }
 }

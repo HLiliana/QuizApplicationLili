@@ -33,6 +33,45 @@ public class QuizRepository {
         entityManager.close();
     }
 
+    public void deleteQuiz(Quiz quiz){
+        entityManager.getTransaction().begin();
+        entityManager.remove(quiz);
+        entityManager.getTransaction( ).commit( );
+        entityManager.close( );
+        emFactory.close( );
+
+    }
+
+    public Quiz findById(String id) throws Exception {
+        if(id == null) {
+            throw new Exception("Id cannot be null");
+        }
+        return entityManager.find(Quiz.class, id);
+    }
+
+    public Quiz findByName (String name) throws Exception {
+        if (name ==null) {
+            throw new Exception("Name cannot be null");
+
+        }
+        Query jpqlQuery = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name LIKE:customName");
+        jpqlQuery.setParameter("customName", name);
+        return (Quiz) jpqlQuery.getSingleResult();
+    }
+
+    public void updateQuiz (Quiz quiz) throws Exception {
+        if (quiz == null) {
+            throw new Exception("There is no quiz");
+
+        }
+        entityManager.getTransaction().begin();
+        entityManager.merge(quiz);
+        entityManager.getTransaction( ).commit( );
+        entityManager.close( );
+        emFactory.close( );
+
+    }
+
 
 }
 

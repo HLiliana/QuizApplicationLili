@@ -3,8 +3,8 @@
 
 <%
         String name = request.getParameter("name");
-        String category = req.getParameter("category");
-        String difficulty = req.getParameter("difficulty");
+        String category = request.getParameter("category");
+        String difficulty = request.getParameter("difficulty");
 
         Quiz quiz = new Quiz(name,category,difficulty);
 
@@ -13,4 +13,4 @@
         repository.addQuiz(quiz);
 
     %>
-
+<meta http-equiv="Refresh" content="0; url='/quizapp/quiz.jsp" />

@@ -11,21 +11,20 @@ import java.io.IOException;
 
 
 
-//@WebServlet("/addQuiz")
-//@PersistenceContext
-//public class AddQuiz extends HttpServlet {
-//
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws IOException{
-//        QuizRepository repository = new QuizRepository();
-//
-//        String name = req.getParameter("name");
-//        String category = req.getParameter("category");
-//        String difficulty = req.getParameter("difficulty");
-//
-//        Quiz quiz = new Quiz(name,category,difficulty);
-//        repository.addQuiz(quiz);
-//        resp.getOutputStream().print("Added!");
-//    }
-//
-//}
+@WebServlet("/addQuiz")
+@PersistenceContext
+public class AddQuiz extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws IOException{
+        QuizRepository repository = new QuizRepository();
+
+        String name = req.getParameter("name");
+        String category = req.getParameter("category");
+        String difficulty = req.getParameter("difficulty");
+
+        Quiz quiz = new Quiz(name,category,difficulty); repository.addQuiz(quiz);
+       resp.getOutputStream().print("Added!");
+    }
+
+}

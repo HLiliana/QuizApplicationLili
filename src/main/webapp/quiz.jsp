@@ -63,7 +63,54 @@
      <input type="submit" value="Add quiz" class="btn btn-primary btn-block"/>
      </form>
 
+     <h3>Delete quiz</h3>
 
+          <form action="deleteQuiz.jsp">
+
+              <div class="form-outline mb-4">
+                  <input type="text" name="name" value="Enter name..." onclick="this.value=''"/><br/>
+              </div>
+             <br/>
+          <input type="submit" value="Delete quiz" class="btn btn-primary btn-block"/>
+          </form>
+
+<h1>Find a Quiz by id</h1>
+
+<form action="findById.jsp">
+     <div class="form-outline mb-4">
+                 <input type="text" name="id" value="Name..." onclick="this.value=''"/><br/>
+             </div>
+     <br/>
+        <input type="submit" value="Find quiz" class="btn btn-primary btn-block"/>
+        </form>
+        <h1>Find a Quiz by name</h1>
+
+        <form action="findByName.jsp">
+             <div class="form-outline mb-4">
+                         <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
+                     </div>
+             <br/>
+                <input type="submit" value="Find quiz" class="btn btn-primary btn-block"/>
+                </form>
+
+<h1> Update a quiz </h1>
+<form action="updateQuiz.jsp" method="post">
+    <div class="form-outline mb-4">
+                             <input type="text" name="name" value="Name..." onclick="this.value=''"/>
+                             <br/>
+                         </div>
+    <div class="form-outline mb-4">
+               <input type="text" name="category" value="Category..." onclick="this.value=''"/>
+               <br/>
+                   </div>
+
+   <div class="form-outline mb-4">
+                <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/>
+                <br/>
+                    </div>
+
+    <input type="submit" value="Update quiz" class="btn btn-primary btn-block"/>
+</form>
 
 </body>
 </html>
