@@ -18,99 +18,28 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
   </head>
 <body>
-    <table border="1" class="table table-striped table-hover w-50 p-3">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Difficulty</th>
-            <th>Question </th>
-            </tr>
-        <%
+<h1> Please pick a choice</h1>
 
-                    QuizRepository repository = new QuizRepository();
+<table>
+<tr>
+<td><form action="mainQuestion.jsp">
+<input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form> </td>
+<td><form action="mainQuiz.jsp">
+<input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form></td>
+</tr>
+</table>
 
-                    List<Quiz> quizList = repository.getAllQuizzes();
-                    for (Quiz quiz : quizList) {
-                %>
-                    <tr>
-                        <td><%= quiz.getId() %></td>
-                        <td><%= quiz.getName() %></td>
-                        <td><%= quiz.getCategory() %></td>
-                        <td><%= quiz.getDifficulty() %></td>
-                        <td><%= quiz.getQuestionsAsCsv() %></td>
-                    </tr>
-                <% } %>
- </table>
+<form action = "mainQuiz.jsp">
+<input type="button" value="To quizzes" name="mainQuiz"
+    onclick="openPage('mainQuiz.jsp')"/>
 
-
- <br/>
- <br/>
- <h2>Add a quiz</h2>
-
-     <form action="addQuiz.jsp">
-         <div class="form-outline mb-4">
-             <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="category"  value="Category..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/><br/>
-         </div>
-
-     <br/>
-     <input type="submit" value="Add quiz" class="btn btn-primary btn-block"/>
-     </form>
-
-     <h3>Delete quiz</h3>
-
-          <form action="deleteQuiz.jsp">
-
-              <div class="form-outline mb-4">
-                  <input type="text" name="name" value="Enter name..." onclick="this.value=''"/><br/>
-              </div>
-             <br/>
-          <input type="submit" value="Delete quiz" class="btn btn-primary btn-block"/>
-          </form>
-
-<h1>Find a Quiz by id</h1>
-
-<form action="findById.jsp">
-     <div class="form-outline mb-4">
-                 <input type="text" name="id" value="Name..." onclick="this.value=''"/><br/>
-             </div>
-     <br/>
-        <input type="submit" value="Find quiz" class="btn btn-primary btn-block"/>
-        </form>
-        <h1>Find a Quiz by name</h1>
-
-        <form action="findByName.jsp">
-             <div class="form-outline mb-4">
-                         <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
-                     </div>
-             <br/>
-                <input type="submit" value="Find quiz" class="btn btn-primary btn-block"/>
-                </form>
-
-<h1> Update a quiz </h1>
-<form action="updateQuiz.jsp" method="post">
-    <div class="form-outline mb-4">
-                             <input type="text" name="name" value="Name..." onclick="this.value=''"/>
-                             <br/>
-                         </div>
-    <div class="form-outline mb-4">
-               <input type="text" name="category" value="Category..." onclick="this.value=''"/>
-               <br/>
-                   </div>
-
-   <div class="form-outline mb-4">
-                <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/>
-                <br/>
-                    </div>
-
-    <input type="submit" value="Update quiz" class="btn btn-primary btn-block"/>
-</form>
+    </form>
+    <script type="text/javascript">
+     function openPage(pageURL)
+     {
+     window.location.href = pageURL;
+     }
+    </script>
 
 </body>
 </html>

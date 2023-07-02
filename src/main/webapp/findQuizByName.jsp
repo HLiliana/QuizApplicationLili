@@ -21,9 +21,9 @@
         </tr>
 
 <%
-  String id = request.getParameter("id");
+  String name = request.getParameter("name");
   QuizRepository repository = new QuizRepository();
-  Quiz quiz = repository.findById(id);
+  Quiz quiz = repository.findByName(name);
 
   %>
 
@@ -35,7 +35,8 @@
               </tr>
               </table>
 
-
+<form action="mainQuiz.jsp">
+<input type="submit" value="Back to Quiz" class="btn btn-primary btn-block"/>
 
   </body>
 </html>

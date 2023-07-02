@@ -21,10 +21,13 @@
         </tr>
 
 <%
-  String name = request.getParameter("name");
+  String id = request.getParameter("id");
   QuizRepository repository = new QuizRepository();
-  Quiz quiz = repository.findByName(name);
+  repository.findById(id);
 
+
+                  if(repository.findById(id) != null) {
+                  Quiz quiz = repository.findById(id);
   %>
 
   <tr>
@@ -33,9 +36,13 @@
                   <td><%= quiz.getCategory() %></td>
                   <td><%= quiz.getDifficulty() %></td>
               </tr>
+              <% }
+               else {response.sendRedirect("errorQuiz.jsp");
+               }%>
               </table>
 
-
+<form action="mainQuiz.jsp">
+<input type="submit" value="Back to Quiz" class="btn btn-primary btn-block"/>
 
   </body>
 </html>

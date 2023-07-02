@@ -1,32 +1,40 @@
 package com.QuizApplication.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="questions")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Question {
 
     @Id
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String question;
-    private String choice1;
-    private String choice2;
-    private String choice3;
-    private String choice4;
-    private String answer;
-    private String description;
-    private String explanation;
+    private String questionDescription;
+    private String incorrectAnswer1;
+    private String incorrectAnswer2;
+    private String incorrectAnswer3;
+    private String correctAnswer;
+    private String category;
+    private String difficulty;
 
     @ManyToMany(mappedBy = "questionList")
     private List<Quiz> quizList;
 
-
-
+    public Question(String questionDescription, String incorrectAnswer1, String incorrectAnswer2, String incorrectAnswer3, String correctAnswer, String category, String difficulty) {
+        this.questionDescription = questionDescription;
+        this.incorrectAnswer1 = incorrectAnswer1;
+        this.incorrectAnswer2 = incorrectAnswer2;
+        this.incorrectAnswer3 = incorrectAnswer3;
+        this.correctAnswer = correctAnswer;
+        this.category = category;
+        this.difficulty = difficulty;
+    }
 }

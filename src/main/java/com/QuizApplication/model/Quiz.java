@@ -36,7 +36,7 @@ public class Quiz {
     private List<Question> questionList;
 
     public String getQuestionsAsCsv(){
-        return getQuestionList().stream().map(Question::getQuestion).collect(Collectors.joining(", "));
+        return getQuestionList().stream().map(Question::getQuestionDescription).collect(Collectors.joining(", "));
     }
 
     public Quiz(String name, String category, String difficulty) {

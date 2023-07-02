@@ -14,12 +14,13 @@
             <th>Difficulty</th>
         </tr>
         <%
+                    String id = request.getParameter("id");
                     String name = request.getParameter("name");
                     String category = request.getParameter("category");
                     String difficulty = request.getParameter("difficulty");
 
                     QuizRepository repository = new QuizRepository();
-                    Quiz quiz = repository.findByName(name);
+                    Quiz quiz = repository.findById(id);
                     quiz.setName(name);
                     quiz.setCategory(category);
                     quiz.setDifficulty(difficulty);
@@ -33,6 +34,8 @@
                 <td><%= quiz.getDifficulty() %></td>
             </tr>
     </table>
-
+    <br/>
+<form action="mainQuiz.jsp">
+<input type="submit" value="Back to Quiz" class="btn btn-primary btn-block"/>
 </body>
 </html>
