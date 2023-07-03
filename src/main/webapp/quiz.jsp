@@ -18,52 +18,28 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
   </head>
 <body>
-    <table border="1" class="table table-striped table-hover w-50 p-3">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Difficulty</th>
-            <th>Question </th>
-            </tr>
-        <%
+<h1> Please pick a choice</h1>
 
-                    QuizRepository repository = new QuizRepository();
+<table>
+<tr>
+<td><form action="mainQuestion.jsp">
+<input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form> </td>
+<td><form action="mainQuiz.jsp">
+<input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form></td>
+</tr>
+</table>
 
-                    List<Quiz> quizList = repository.getAllQuizzes();
-                    for (Quiz quiz : quizList) {
-                %>
-                    <tr>
-                        <td><%= quiz.getId() %></td>
-                        <td><%= quiz.getName() %></td>
-                        <td><%= quiz.getCategory() %></td>
-                        <td><%= quiz.getDifficulty() %></td>
-                        <td><%= quiz.getQuestionsAsCsv() %></td>
-                    </tr>
-                <% } %>
- </table>
+<form action = "mainQuiz.jsp">
+<input type="button" value="To quizzes" name="mainQuiz"
+    onclick="openPage('mainQuiz.jsp')"/>
 
-
- <br/>
- <br/>
- <h2>Add a quiz</h2>
-
-     <form action="addQuiz.jsp">
-         <div class="form-outline mb-4">
-             <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="category"  value="Category..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/><br/>
-         </div>
-
-     <br/>
-     <input type="submit" value="Add quiz" class="btn btn-primary btn-block"/>
-     </form>
-
-
+    </form>
+    <script type="text/javascript">
+     function openPage(pageURL)
+     {
+     window.location.href = pageURL;
+     }
+    </script>
 
 </body>
 </html>

@@ -1,16 +1,20 @@
 package com.QuizApplication.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name = "quizzes")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Quiz {
 
     @Id
@@ -32,7 +36,7 @@ public class Quiz {
     private List<Question> questionList;
 
     public String getQuestionsAsCsv(){
-        return getQuestionList().stream().map(Question::getQuestion).collect(Collectors.joining(", "));
+        return getQuestionList().stream().map(Question::getQuestionDescription).collect(Collectors.joining(", "));
     }
 
     public Quiz(String name, String category, String difficulty) {
@@ -41,6 +45,4 @@ public class Quiz {
         this.difficulty = difficulty;
     }
 
-    public Quiz() {
-    }
 }
