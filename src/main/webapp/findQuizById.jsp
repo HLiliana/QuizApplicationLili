@@ -43,6 +43,7 @@
 
 <form action="mainQuiz.jsp">
 <input type="submit" value="Back to Quiz" class="btn btn-primary btn-block"/>
+</form>
 
   </body>
 </html>
