@@ -2,8 +2,16 @@ package com.QuizApplication.repository;
 
 import com.QuizApplication.model.Question;
 import com.QuizApplication.model.Quiz;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import jakarta.persistence.*;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 
@@ -66,4 +74,40 @@ public class QuestionRepository {
         emFactory.close( );
 
     }
+    public Question getQuestionsFromApi() {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=21&difficulty=easy&type=multiple"))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                String responseBody = response.body();
+                Gson gson = new Gson();
+                JsonObject json = gson.fromJson(responseBody, JsonObject.class);
+
+                JsonArray results = json.getAsJsonArray("results");
+                JsonObject questionData = results.get(0).getAsJsonObject();
+
+                String questionDescription = questionData.getAsJsonObject("questionDescription").get("question").getAsString();
+                String category = questionData.getAsJsonObject("category").get("category").getAsString();
+                String difficulty = questionData.getAsJsonObject("difficulty").get("difficulty").getAsString();
+                JsonArray incorrectAnswers = json.getAsJsonArray("incorrectAnswers");
+
+                JsonObject incorrectAnswersData = incorrectAnswers.get(0).getAsJsonObject();
+                String incorrectAnswer1 = String.valueOf(incorrectAnswersData.get(String.valueOf(0)));
+                String incorrectAnswer2 = String.valueOf(incorrectAnswersData.get(String.valueOf(1)));
+                String incorrectAnswer3 = String.valueOf(incorrectAnswersData.get(String.valueOf(2)));
+                String correctAnswer = questionData.getAsJsonObject("correctAnswer").get("correct_answer").getAsString();
+
+                return new Question(questionDescription,category,difficulty,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,correctAnswer);
+
+            }
+        } catch (IOException | InterruptedException ignored) {
+            //todo do some real handling
+        }
+        throw new RuntimeException("can't get data");
+    }
 }
+

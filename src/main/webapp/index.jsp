@@ -14,6 +14,8 @@
 <body>
     <h1>Welcome to the Quiz Application!</h1>
 
+    
+
     <form action="login.jsp" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
