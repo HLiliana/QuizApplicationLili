@@ -19,7 +19,13 @@
   </head>
 <body>
 
-<h1> Tabel for question <h1/>
+  <form action="" method="GET">
+            <br/>
+            <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
+        </form>
+
+
+<h1> Table for question <h1/>
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">
