@@ -4,8 +4,6 @@
 <%@ page import="com.QuizApplication.repository.QuestionRepository" %>
 <%@ page import="com.QuizApplication.model.Quiz" %>
 <%@ page import="com.QuizApplication.model.Question" %>
-<%@ page import="com.QuizApplication.controller.HomePageController" %>
-<%@ page import="com.QuizApplication.controller.LoginUserServlet" %>
 
 <html>
  <head>

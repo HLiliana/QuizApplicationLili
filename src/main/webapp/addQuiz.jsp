@@ -13,4 +13,4 @@
         repository.addQuiz(quiz);
 
     %>
-<meta http-equiv="Refresh" content="0; url='/quizapp/mainQuiz.jsp" />
+<meta http-equiv="Refresh" content="0; url='/quizapp/mainQuiz.jsp"/>
