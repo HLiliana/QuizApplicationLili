@@ -34,6 +34,10 @@
           <input type="text" id="username" name="username" required>
           <br>
           <input type ="submit" value="Delete user">
-    <form>
+    </form>
+
+    <form action="index.jsp">
+    <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
+    </form>
 </body>
 </html>
