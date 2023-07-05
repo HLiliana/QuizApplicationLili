@@ -16,7 +16,7 @@
 
     if (isAuthenticated) {
         // Redirect to the quiz page or another authenticated page
-        response.sendRedirect("quiz.jsp");
+        response.sendRedirect("welcomeUser.jsp");
     } else {
         // Authentication failed, show an error message or redirect to an error page
         response.sendRedirect("error.jsp");
