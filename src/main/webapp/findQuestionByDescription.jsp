@@ -1,6 +1,4 @@
-<%@ page import="com.QuizApplication.model.Quiz, com.QuizApplication.repository.QuizRepository" %>
-<%@ page import="com.QuizApplication.model.Question, com.QuizApplication.repository.QuestionRepository" %>
-<%@ page import="java.util.List" %>
+
 
 <html>
 <head>

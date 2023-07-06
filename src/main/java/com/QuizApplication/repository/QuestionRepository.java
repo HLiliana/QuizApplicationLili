@@ -1,10 +1,12 @@
 package com.QuizApplication.repository;
 
+import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.Question;
 import com.QuizApplication.model.Quiz;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import jakarta.persistence.*;
 
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.util.List;
 
 
 public class QuestionRepository {
+    @PersistenceContext
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
     EntityManager entityManager = emFactory.createEntityManager();
 
@@ -74,10 +77,10 @@ public class QuestionRepository {
         emFactory.close( );
 
     }
-    public Question getQuestionsFromApi() {
+    public Question getQuestionsFromApi() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=21&difficulty=easy&type=multiple"))
+                .uri(URI.create("https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple"))
                 .build();
 
         try {
@@ -90,22 +93,24 @@ public class QuestionRepository {
                 JsonArray results = json.getAsJsonArray("results");
                 JsonObject questionData = results.get(0).getAsJsonObject();
 
-                String questionDescription = questionData.getAsJsonObject("questionDescription").get("question").getAsString();
-                String category = questionData.getAsJsonObject("category").get("category").getAsString();
-                String difficulty = questionData.getAsJsonObject("difficulty").get("difficulty").getAsString();
-                JsonArray incorrectAnswers = json.getAsJsonArray("incorrectAnswers");
+                String category = questionData.get("category").getAsString();
+                String difficulty = questionData.get("difficulty").getAsString();
 
-                JsonObject incorrectAnswersData = incorrectAnswers.get(0).getAsJsonObject();
-                String incorrectAnswer1 = String.valueOf(incorrectAnswersData.get(String.valueOf(0)));
-                String incorrectAnswer2 = String.valueOf(incorrectAnswersData.get(String.valueOf(1)));
-                String incorrectAnswer3 = String.valueOf(incorrectAnswersData.get(String.valueOf(2)));
-                String correctAnswer = questionData.getAsJsonObject("correctAnswer").get("correct_answer").getAsString();
+                String questionDescription = questionData.get("question").getAsString();
+                String correctAnswer = questionData.get("correct_answer").getAsString();
+
+                JsonArray incorrectAnswers = questionData.getAsJsonArray("incorrect_answers");
+
+                String incorrectAnswer1 = incorrectAnswers.get(0).getAsString();
+                String incorrectAnswer2 = incorrectAnswers.get(1).getAsString();
+                String incorrectAnswer3 = incorrectAnswers.get(2).getAsString();
+
 
                 return new Question(questionDescription,category,difficulty,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,correctAnswer);
 
             }
         } catch (IOException | InterruptedException ignored) {
-            //todo do some real handling
+            throw new BusinessException("Did not receive info from API");
         }
         throw new RuntimeException("can't get data");
     }

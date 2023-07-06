@@ -17,7 +17,7 @@
   </head>
 <body>
 
-  <form action="" method="GET">
+  <form action="getQuestionApi.jsp" method="GET">
             <br/>
             <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
         </form>
