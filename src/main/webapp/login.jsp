@@ -15,8 +15,7 @@
     boolean isAuthenticated = authenticateUser(username, password);
 
     if (isAuthenticated) {
-        // Redirect to the quiz page or another authenticated page
-        response.sendRedirect("welcomeUser.jsp");
+      request.getRequestDispatcher("welcomeUser.jsp").forward(request, response);
     } else {
         // Authentication failed, show an error message or redirect to an error page
         response.sendRedirect("error.jsp");
