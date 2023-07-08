@@ -34,6 +34,5 @@
           <input type="text" id="username" name="username" required>
           <br>
           <input type ="submit" value="Delete user">
-    <form>
 </body>
 </html>

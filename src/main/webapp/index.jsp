@@ -24,8 +24,9 @@
         <br>
         <input type="submit" value="Login">
     </form>
-
-    <a href="signup.jsp">Sign Up</a>
+    <form action="signup.jsp">
+        <input type="submit" value="Sign Up" class="btn btn-primary btn-block"/>
+        </form>
 </body>
 </head>
 </html>
