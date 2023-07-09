@@ -1,0 +1,14 @@
+body {
+    color: #82a5ca;
+    margin: 0 0 0 0;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+#bg-image{
+    background-size: cover;
+    height: 300px;
+    padding: 10px 0 40px 0;
+    border: 1px;
+}
