@@ -4,6 +4,7 @@
 <%@ page import="com.QuizApplication.repository.QuestionRepository" %>
 <%@ page import="com.QuizApplication.model.Quiz" %>
 <%@ page import="com.QuizApplication.model.Question" %>
+<%@ page import="com.QuizApplication.exception.BusinessException" %>
 
 <html>
  <head>
@@ -17,7 +18,7 @@
   </head>
 <body>
 
-  <form action="" method="GET">
+  <form action="getQuestionApi.jsp" method="GET">
             <br/>
             <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
         </form>
