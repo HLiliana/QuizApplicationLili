@@ -21,7 +21,6 @@ public class Quiz {
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
     private String category;
     private String difficulty;
