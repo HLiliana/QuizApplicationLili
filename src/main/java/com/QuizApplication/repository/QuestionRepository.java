@@ -87,7 +87,7 @@ public class QuestionRepository {
                 JsonObject json = gson.fromJson(responseBody, JsonObject.class);
 
                 JsonArray results = json.getAsJsonArray("results");
-                JsonObject questionData = results.get(0).getAsJsonObject();
+                JsonObject questionData = results.get(4).getAsJsonObject();
 
 
                 String questionDescription = questionData.get("question").getAsString();
