@@ -13,23 +13,24 @@
 <body>
 
 <%!
-        boolean authenticateUser(String username, String password) {
         UserRepository userRepository = new UserRepository();
-        return userRepository.authenticateUser(username, password);
+
+        boolean authenticateUser(String email, String password) {
+        return userRepository.authenticateUser(email, password);
     }
 %>
 <%
-    String username = request.getParameter("username");
+    String email = request.getParameter("email");
     String password = request.getParameter("password");
 
     // Perform authentication using your preferred approach (e.g., querying the database)
-    boolean isAuthenticated = authenticateUser(username, password);
+    boolean isAuthenticated = authenticateUser(email, password);
 
     if (isAuthenticated) {
-        // Redirect to the quiz page or another authenticated page
+      String username = userRepository.getUsernameByEmail(email);
+      request.setAttribute("username", username);
       request.getRequestDispatcher("welcomeUser.jsp").forward(request, response);
     } else {
-        // Authentication failed, show an error message or redirect to an error page
         response.sendRedirect("error.jsp");
     }
 %>

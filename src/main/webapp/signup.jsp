@@ -2,8 +2,8 @@
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 
 <html>
- <head>
-  <head>
+<head>
+
      <!-- This will make the table look nicer -->
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,11 +22,15 @@
 
 
      <form action="addUser.jsp" method="post">
-         <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required >
+          <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required >
             <br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
+            <br>
+            <br>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
             <br>
             <br>
             <label for="email">Email:</label>
@@ -36,7 +40,8 @@
             <label for="phone">Phone:</label>
             <input type="text" id="phone" name="phone" required>
             <br>
-            <input type="submit" value="SignUp">
+            <br>
+        <input type="submit" value="SignUp" class="btn btn-primary">
         </form>
 
 </body>
