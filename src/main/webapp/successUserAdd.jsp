@@ -3,6 +3,7 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
+ <link rel="stylesheet" href="styles.css">
 
 <html>
 <head>
