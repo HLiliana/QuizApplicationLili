@@ -11,12 +11,9 @@
 </head>
 
 <body>
-    <%
-        // Retrieve the username from the request
-        String username = request.getParameter("username");
-    %>
 
-     <h1>Welcome <%=username%></h1>
+
+     <h1>Welcome <%=request.getAttribute ("username")%></h1>
 
     <form action="quiz.jsp" method = "post">
         <input type="submit" value="Play Quiz">

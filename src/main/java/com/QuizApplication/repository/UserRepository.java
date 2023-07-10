@@ -33,11 +33,11 @@ public class UserRepository {
         }
     }
 
-    public boolean authenticateUser(String username, String password) {
+    public boolean authenticateUser(String email, String password) {
         EntityManager entityManager = emFactory.createEntityManager();
         try {
-            Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password = :password");
-            query.setParameter("username", username);
+            Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email ILIKE :email AND u.password = :password");
+            query.setParameter("email", email);
             query.setParameter("password", password);
             User user;
             try {
@@ -53,7 +53,7 @@ public class UserRepository {
 
     private boolean isUsernameValid(String username) {
         // string between 6-50, accepts only letters and digits
-        String usernameValidation = "^[a-zA-Z0-9]{6,50}$";
+        String usernameValidation ="[a-zA-Z0-9]{6,50}$";
         return username.matches(usernameValidation);
     }
 
@@ -73,6 +73,23 @@ public class UserRepository {
         // RO phoneNumber 10 digits starts with 07
         String phoneValidation = "^07\\d{8}$";
         return phoneNumber.matches(phoneValidation);
+    }
+
+    public String getUsernameByEmail(String email) {
+        EntityManager entityManager = emFactory.createEntityManager();
+        try {
+            Query query = entityManager.createQuery("SELECT u.username FROM User u WHERE u.email ILIKE :email", String.class);
+            query.setParameter("email", email);
+            String username;
+            try {
+                username = query.getSingleResult().toString();
+            } catch (NoResultException e) {
+                username = null;
+            }
+            return username;
+        } finally {
+            entityManager.close();
+        }
     }
 }
 
