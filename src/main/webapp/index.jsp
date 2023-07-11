@@ -37,6 +37,8 @@
         <input type="submit" value="Sign Up" class="btn btn-primary btn-block"/>
         </form>
         </div>
+
+
 </body>
 </head>
 </html>
