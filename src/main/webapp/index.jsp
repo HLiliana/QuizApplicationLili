@@ -16,28 +16,26 @@
     <title>Quiz Application</title>
 </head>
 <body>
+<h1>Welcome to the Quiz Application!</h1>
+<form action="login.jsp" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <br>
+                    <input type="submit" value="Login">
+                </form>
+                <form action="signup.jsp">
+                        <input type="submit" value="Sign Up" class="btn btn-primary btn-block"/>
+                        </form>
 <div class="bg-image"
-     style="background-image: url('https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-icon_149152-811.jpg?w=2000');
+     style="background-image: url('QuizImage1.avif');
+              background-repeat: no-repeat;
+              background-position: center bottom 100px;
+               background-size: contain;
             height: 100vh">
-    <h1>Welcome to the Quiz Application!</h1>
-
-
-
-    <form action="login.jsp" method="post">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Login">
-    </form>
-
-    <form action="signup.jsp">
-        <input type="submit" value="Sign Up" class="btn btn-primary btn-block"/>
-        </form>
-        </div>
-
+            </div>
 
 </body>
 </head>
