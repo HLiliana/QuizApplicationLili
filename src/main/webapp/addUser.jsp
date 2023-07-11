@@ -19,7 +19,7 @@
                 UserRepository userRepository = new UserRepository();
                 userRepository.addUser(user);
 
-                boolean isAuthenticated = userRepository.authenticateUser(username, password);
+                boolean isAuthenticated = userRepository.authenticateUser(email, password);
 
                 if (isAuthenticated) {
                     String message = "User successfully added";
