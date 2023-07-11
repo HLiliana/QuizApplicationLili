@@ -18,11 +18,6 @@
   </head>
 <body>
 
-  <form action="getQuestionApi.jsp" method="GET">
-            <br/>
-            <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
-        </form>
-
 
 <h1> Table for question <h1/>
 <table>
@@ -58,110 +53,64 @@
                <% } %>
 </table>
 
- <h2>Add a Question</h2>
 
-     <form action="addQuestion.jsp">
-         <div class="form-outline mb-4">
-             <input type="text" name="questionDescription" value="QuestionDescription..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="category"  value="Category..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-             <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-                      <input type="text" name="correctAnswer" value="CorrectAnswer..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-                      <input type="text" name="incorrectAnswer1" value="IncorrectAnswer1..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-                      <input type="text" name="incorrectAnswer2" value="IncorrectAnswer2..." onclick="this.value=''"/><br/>
-         </div>
-         <div class="form-outline mb-4">
-                      <input type="text" name="incorrectAnswer3" value="IncorrectAnswer3..." onclick="this.value=''"/><br/>
-                  </div>
+  <form action="getQuestionApi.jsp" method="GET">
 
+            <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
+        </form>
 
-     <br/>
-     <input type="submit" value="Add question" class="btn btn-primary btn-block"/>
-     </form>
+  <form action="getMultipleQuestionsApi.jsp" method="GET">
 
-    <br/>
-    <br/>
-    <h1>Find a Question by id</h1>
+            <input type="submit" name="getMultipleQuestionApi" value="Generate multiple question" class="btn btn-primary btn-block"/>
+        </form>
+
+            issue here
+         <h2>Add a question</h2>
+
+            <form action="toAddQuestion.jsp">
+            <input type="submit" value="Add a Question" class="btn btn-primary btn-block"/>
+            </form>
+
+   <%-- <h2>Find a Question by id</h2> --%>
 
     <form action="findQuestionById.jsp">
          <div class="form-outline mb-4">
-                     <input type="text" name="id" value="Enter Id..." onclick="this.value=''"/><br/>
+         <input type="text" name="id" value="Enter Id..." onclick="this.value=''"/><br/>
                  </div>
-         <br/>
-            <input type="submit" value="Find question" class="btn btn-primary btn-block"/>
-            </form>
+         <input type="submit" value="Find question" class="btn btn-primary btn-block"/>
+         </form>
 
  <br/>
- <br/>
 
-    <h1>Find a Question by description</h1>
+    <%-- <h2>Find a Question by description</h2> --%>
 
      <form action="findQuestionByDescription.jsp">
           <div class="form-outline mb-4">
                       <input type="text" name="questionDescription" value="Enter Description..." onclick="this.value=''"/><br/>
                   </div>
-          <br/>
+
              <input type="submit" value="Find question" class="btn btn-primary btn-block"/>
              </form>
 
     <br/>
-     <br/>
 
-     <h2>Update a Question</h2>
+ <%-- <h2>Update a Question</h2> --%>
 
-          <form action="updateQuestion.jsp" method="post">
-               <div class="form-outline mb-4">
-                                 <input type="text" name="id" value="Id..." onclick="this.value=''"/><br/>
-                  </div>
-              <div class="form-outline mb-4">
-                  <input type="text" name="questionDescription" value="QuestionDescription..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                  <input type="text" name="category"  value="Category..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                  <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                           <input type="text" name="correctAnswer" value="CorrectAnswer..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                           <input type="text" name="incorrectAnswer1" value="IncorrectAnswer1..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                           <input type="text" name="incorrectAnswer2" value="IncorrectAnswer2..." onclick="this.value=''"/><br/>
-              </div>
-              <div class="form-outline mb-4">
-                           <input type="text" name="incorrectAnswer3" value="IncorrectAnswer3..." onclick="this.value=''"/><br/>
-                       </div>
-
+            <form action="toUpdateQuestion.jsp">
+            <input type="submit" value="Update a Question" class="btn btn-primary btn-block"/>
+            </form>
 
           <br/>
-          <input type="submit" value="Update question" class="btn btn-primary btn-block"/>
-          </form>
 
+<%-- <h2>Delete question</h2> --%>
 
-          <br/>
-          <br/>
+            <form action="deleteQuestion.jsp">
 
-           <h3>Delete question</h3>
-
-                    <form action="deleteQuestion.jsp">
-
-                        <div class="form-outline mb-4">
+                   <div class="form-outline mb-4">
                             <input type="text" name="id" value="Enter ID..." onclick="this.value=''"/><br/>
-                        </div>
-                       <br/>
-                    <input type="submit" value="Delete question" class="btn btn-primary btn-block"/>
-                    </form>
+                   </div>
+
+            <input type="submit" value="Delete question" class="btn btn-primary btn-block"/>
+            </form>
 </body>
 </html>
