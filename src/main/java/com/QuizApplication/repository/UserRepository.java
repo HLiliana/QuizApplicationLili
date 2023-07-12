@@ -9,45 +9,48 @@ public class UserRepository {
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 
     public void addUser(User user) throws BusinessException {
-        EntityManager entityManager = emFactory.createEntityManager();
-        try {
-            if (!isUsernameValid(user.getUsername())) {
-                throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
-                        " must include only letters and digits.");
-            }
-            if (!isPasswordValid(user.getPassword())) {
-                throw new BusinessException("Password should have at least 6 characters and at least one digit.");
-            }
-            if (!isEmailValid(user.getEmail())) {
-                throw new BusinessException("Email should be valid.");
-            }
-            if (!isPhoneNumberValid(user.getPhone())) {
-                throw new BusinessException("Phone number should be a valid number from Romania.");
-            }
-            entityManager.getTransaction().begin();
-            entityManager.persist(user);
-            entityManager.getTransaction().commit();
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+            try {
 
-        } finally {
-            entityManager.close();
+                if (!isUsernameValid(user.getUsername())) {
+                    throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
+                            " must include only letters and digits.");
+                }
+                if (!isPasswordValid(user.getPassword())) {
+                    throw new BusinessException("Password should have at least 6 characters and at least one digit.");
+                }
+                if (!isEmailValid(user.getEmail())) {
+                    throw new BusinessException("Email should be valid.");
+                }
+                if (!isPhoneNumberValid(user.getPhone())) {
+                    throw new BusinessException("Phone number should be a valid number from Romania.");
+                }
+                entityManager.getTransaction().begin();
+                entityManager.persist(user);
+                entityManager.getTransaction().commit();
+
+            } finally {
+                entityManager.close();
+            }
         }
     }
 
     public boolean authenticateUser(String email, String password) {
-        EntityManager entityManager = emFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email ILIKE :email AND u.password = :password");
-            query.setParameter("email", email);
-            query.setParameter("password", password);
-            User user;
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
-                user = (User) query.getSingleResult();
-            } catch (NoResultException e) {
-                user = null;
+                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email ILIKE :email AND u.password = :password");
+                query.setParameter("email", email);
+                query.setParameter("password", password);
+                User user;
+                try {
+                    user = (User) query.getSingleResult();
+                } catch (NoResultException e) {
+                    user = null;
+                }
+                return user != null;
+            } finally {
+                entityManager.close();
             }
-            return user != null;
-        } finally {
-            entityManager.close();
         }
     }
 
@@ -76,19 +79,20 @@ public class UserRepository {
     }
 
     public String getUsernameByEmail(String email) {
-        EntityManager entityManager = emFactory.createEntityManager();
-        try {
-            Query query = entityManager.createQuery("SELECT u.username FROM User u WHERE u.email ILIKE :email", String.class);
-            query.setParameter("email", email);
-            String username;
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
-                username = query.getSingleResult().toString();
-            } catch (NoResultException e) {
-                username = null;
+                Query query = entityManager.createQuery("SELECT u.username FROM User u WHERE u.email ILIKE :email", String.class);
+                query.setParameter("email", email);
+                String username;
+                try {
+                    username = query.getSingleResult().toString();
+                } catch (NoResultException e) {
+                    username = null;
+                }
+                return username;
+            } finally {
+                entityManager.close();
             }
-            return username;
-        } finally {
-            entityManager.close();
         }
     }
 }

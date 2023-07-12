@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import jakarta.persistence.*;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -33,21 +34,27 @@ public class QuestionRepository {
 
 
     public void addQuestion(Question question) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(question);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        try(EntityManager entityManager = emFactory.createEntityManager()){;
+            entityManager.getTransaction().begin();
+            entityManager.persist(question);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+        }
     }
 
     public Question findQuestionById(String id) throws Exception {
-        if(id == null) {
+        if (id == null) {
             throw new Exception("Id cannot be null");
         }
         return entityManager.find(Question.class, id);
     }
 
-    public Question findQuestionByDescription (String name) throws Exception {
-        if (name ==null) {
+    public Question findQuestionByDescription(String name) throws Exception {
+        if (name == null) {
             throw new Exception("Name cannot be null");
 
         }
@@ -56,27 +63,28 @@ public class QuestionRepository {
         return (Question) jpqlQuery.getSingleResult();
     }
 
-    public void deleteQuestion(Question question){
+    public void deleteQuestion(Question question) {
         entityManager.getTransaction().begin();
         entityManager.remove(question);
-        entityManager.getTransaction( ).commit( );
-        entityManager.close( );
-        emFactory.close( );
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        emFactory.close();
 
     }
 
-    public void updateQuestion (Question question) throws Exception {
+    public void updateQuestion(Question question) throws Exception {
         if (question == null) {
             throw new Exception("There is no question");
 
         }
         entityManager.getTransaction().begin();
         entityManager.merge(question);
-        entityManager.getTransaction( ).commit( );
-        entityManager.close( );
-        emFactory.close( );
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        emFactory.close();
 
     }
+
     public Question getQuestionsFromApi() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -105,7 +113,7 @@ public class QuestionRepository {
                 String incorrectAnswer3 = incorrectAnswers.get(0).getAsString();
 
 
-                return new Question(questionDescription,category,difficulty,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,correctAnswer);
+                return new Question(questionDescription, category, difficulty, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, correctAnswer);
 
             }
         } catch (IOException | InterruptedException ignored) {
@@ -113,7 +121,8 @@ public class QuestionRepository {
         }
         throw new RuntimeException("can't get data");
     }
-    public Question getMultipleQuestions() throws BusinessException {
+
+    public List<Question> getMultipleQuestions() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://opentdb.com/api.php?amount=20&category=21&difficulty=easy&type=multiple"))
@@ -135,24 +144,21 @@ public class QuestionRepository {
 
                     String category = questionData.get("category").getAsString();
                     String difficulty = questionData.get("difficulty").getAsString();
-
                     String questionDescription = questionData.get("question").getAsString();
                     String correctAnswer = questionData.get("correct_answer").getAsString();
 
                     JsonArray incorrectAnswers = questionData.getAsJsonArray("incorrect_answers");
-
                     String incorrectAnswer1 = incorrectAnswers.get(0).getAsString();
                     String incorrectAnswer2 = incorrectAnswers.get(1).getAsString();
                     String incorrectAnswer3 = incorrectAnswers.get(2).getAsString();
-
+//return list de Question,  import in jsp list+bussinesexc+charset
 
                     Question question = new Question(questionDescription, category, difficulty, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, correctAnswer);
                     questionList.add(question);
-
                 }
-                return new Question();
+                return  questionList;
             }
-        } catch (IOException | InterruptedException ignored) {
+        }catch (IOException | InterruptedException ignored) {
             throw new BusinessException("Did not receive info from API");
         }
         throw new RuntimeException("can't get data");
