@@ -95,5 +95,38 @@ public class UserRepository {
             }
         }
     }
+    public boolean deleteUser(String email) throws BusinessException {
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+            try {
+                if (!isEmailValid(email)) {
+                    throw new BusinessException("Email should be valid.");
+                }
+                entityManager.getTransaction().begin();
+                Query query = entityManager.createQuery("DELETE FROM User u WHERE u.email LIKE :email");
+                query.setParameter("email", email);
+                int deletedCount = query.executeUpdate();
+                entityManager.getTransaction().commit();
+//entityManager.find(User.class, email);
+                if (deletedCount >0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch (NoResultException e){
+                throw new BusinessException("The user was not found in our database");
+            }
+        }
+    }
+
+//  for update maybe we use merge
+//    public void mergeMovie() {
+//        EntityManager em = getEntityManager();
+//        Movie movie = getMovie(1L);
+//        em.detach(movie);
+//        movie.setLanguage("Italian");
+//        em.getTransaction().begin();
+//        em.merge(movie);
+//        em.getTransaction().commit();
+//    }
 }
 

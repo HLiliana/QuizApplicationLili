@@ -101,10 +101,9 @@ public class QuestionRepository {
                 JsonArray results = json.getAsJsonArray("results");
                 JsonObject questionData = results.get(4).getAsJsonObject();
 
-
-                String questionDescription = questionData.get("question").getAsString();
                 String category = questionData.get("category").getAsString();
                 String difficulty = questionData.get("difficulty").getAsString();
+                String questionDescription = questionData.get("question").getAsString();
                 String correctAnswer = questionData.get("correct_answer").getAsString();
 
                 JsonArray incorrectAnswers = questionData.getAsJsonArray("incorrect_answers");
@@ -113,7 +112,8 @@ public class QuestionRepository {
                 String incorrectAnswer3 = incorrectAnswers.get(0).getAsString();
 
 
-                return new Question(questionDescription, category, difficulty, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, correctAnswer);
+                return new Question(category, difficulty, questionDescription, correctAnswer,
+                        incorrectAnswer1, incorrectAnswer2, incorrectAnswer3);
 
             }
         } catch (IOException | InterruptedException ignored) {
@@ -125,7 +125,7 @@ public class QuestionRepository {
     public List<Question> getMultipleQuestions() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=21&difficulty=easy&type=multiple"))
+                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=22&difficulty=medium&type=multiple"))
                 .build();
 
         try {
@@ -151,15 +151,15 @@ public class QuestionRepository {
                     String incorrectAnswer1 = incorrectAnswers.get(0).getAsString();
                     String incorrectAnswer2 = incorrectAnswers.get(1).getAsString();
                     String incorrectAnswer3 = incorrectAnswers.get(2).getAsString();
-//return list de Question,  import in jsp list+bussinesexc+charset
 
-                    Question question = new Question(questionDescription, category, difficulty, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3, correctAnswer);
+                    Question question = new Question(category, difficulty, questionDescription, correctAnswer,
+                            incorrectAnswer1, incorrectAnswer2, incorrectAnswer3);
                     questionList.add(question);
                 }
                 return  questionList;
             }
         }catch (IOException | InterruptedException ignored) {
-            throw new BusinessException("Did not receive info from API");
+            throw new BusinessException("Did not receive questions from API");
         }
         throw new RuntimeException("can't get data");
     }
