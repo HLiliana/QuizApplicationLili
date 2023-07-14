@@ -24,7 +24,6 @@
 </head>
 <body>
     <h1>Welcome <%= username %></h1>
-
     <form action="quiz.jsp" method = "post">
         <input type="submit" value="Play Quiz">
     </form>

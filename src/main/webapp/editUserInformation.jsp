@@ -49,7 +49,6 @@
     </form>
 
     <h1>Delete Account Information</h1>
-
     <form action = "deleteUser.jsp" method = "post">
               <label for="email">Email:</label>
               <input type="text" id="email" name="email" required >

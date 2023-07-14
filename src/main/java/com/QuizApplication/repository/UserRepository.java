@@ -120,6 +120,7 @@ public class UserRepository {
             }
         }
     }
+
     public boolean deleteUser(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
