@@ -15,8 +15,20 @@
     <title>Quiz Application</title>
 </head>
 <body>
+         <% //Display the confirmation message if it exists
+         if (session.getAttribute("confirmationMessage") != null) { %>
+            <p><%= session.getAttribute("confirmationMessage") %></p>
+            <% session.removeAttribute("confirmationMessage"); %>
+         <% } %>
+
+         <% //Display the confirmation message if it exists
+         if (session.getAttribute("deleteConfirmationMessage") != null) { %>
+            <p><%= session.getAttribute("deleteConfirmationMessage") %></p>
+            <% session.removeAttribute("deleteConfirmationMessage"); %>
+         <% } %>
+
 <h1>Quiz Application!</h1>
-<form action="login.jsp" method="post">
+                <form action="login.jsp" method="post">
                     <label for="email">Email:</label>
                     <input type="text" id="email" name="email" required>
                     <br>
