@@ -1,8 +1,9 @@
 package com.QuizApplication.repository;
-
+import com.QuizApplication.model.dto.UserUpdateDto;
 import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.User;
 import jakarta.persistence.*;
+import lombok.*;
 
 public class UserRepository {
     @PersistenceContext
@@ -35,28 +36,33 @@ public class UserRepository {
         }
     }
 
-    public boolean authenticateUser(String email, String password) {
+    public boolean authenticateUser(String email, String password) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
-                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email ILIKE :email AND u.password = :password");
+                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email ILIKE :email", User.class);
                 query.setParameter("email", email);
-                query.setParameter("password", password);
                 User user;
                 try {
                     user = (User) query.getSingleResult();
                 } catch (NoResultException e) {
-                    user = null;
+                    throw new BusinessException("Email not found in the database.");
                 }
-                return user != null;
-            } finally {
-                entityManager.close();
+
+                if (!user.getPassword().equals(password)) {
+                    throw new BusinessException("Invalid password.");
+                }
+
+                return true;
+            } catch (RuntimeException e) {
+                throw new BusinessException("An error occurred while authenticating the user.");
             }
         }
     }
 
+
     private boolean isUsernameValid(String username) {
-        // string between 6-50, accepts only letters and digits
-        String usernameValidation ="[a-zA-Z0-9]{6,50}$";
+        // string between 6-50, accepts only spaces, letters and digits
+        String usernameValidation ="^[a-zA-Z0-9 ]{6,50}$";
         return username.matches(usernameValidation);
     }
 
@@ -95,6 +101,26 @@ public class UserRepository {
             }
         }
     }
+    public User getUserByEmail(String email) throws BusinessException {
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+            try {
+                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class);
+                query.setParameter("email", email);
+                User user;
+                try {
+                    user = (User) query.getSingleResult();
+                } catch (NoResultException e) {
+                    user = null;
+                }
+                return user;
+            }catch (NoResultException e) {
+                throw new BusinessException("The user search by email was not found in our database");
+            }finally {
+                entityManager.close();
+            }
+        }
+    }
+
     public boolean deleteUser(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -106,7 +132,6 @@ public class UserRepository {
                 query.setParameter("email", email);
                 int deletedCount = query.executeUpdate();
                 entityManager.getTransaction().commit();
-//entityManager.find(User.class, email);
                 if (deletedCount >0){
                     return true;
                 }else{
@@ -117,16 +142,52 @@ public class UserRepository {
             }
         }
     }
+    public User updateUserByEmail(String username, String password, String email, String phone) throws BusinessException {
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+            try {
+                entityManager.getTransaction().begin();
 
-//  for update maybe we use merge
-//    public void mergeMovie() {
-//        EntityManager em = getEntityManager();
-//        Movie movie = getMovie(1L);
-//        em.detach(movie);
-//        movie.setLanguage("Italian");
-//        em.getTransaction().begin();
-//        em.merge(movie);
-//        em.getTransaction().commit();
-//    }
+                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class);
+                query.setParameter("email", email);
+                User user = (User) query.getSingleResult();
+
+                if (user != null) {
+                    if (!username.isEmpty()) {
+                        if (isUsernameValid(username)) {
+                            user.setUsername(username);
+                        } else {
+                            throw new BusinessException("Username should be at least 6 characters long and maximum 50 characters," +
+                                    " must include only letters and digits.");
+                        }
+                    }
+                    if (!password.isEmpty()) {
+                        if (isPasswordValid(password)) {
+                            user.setPassword(password);
+                        } else {
+                            throw new BusinessException("Password should have at least 6 characters and at least one digit.");
+                        }
+                    }
+                    if (!phone.isEmpty()) {
+                        if (isPhoneNumberValid(phone)) {
+                            user.setPhone(phone);
+                        } else {
+                            throw new BusinessException("Phone number should be a valid number from Romania.");
+                        }
+                    }
+
+                    user = entityManager.merge(user);
+                    entityManager.getTransaction().commit();
+                    return user;
+                } else {
+                    entityManager.getTransaction().rollback();
+                    return null;
+                }
+            } catch (NoResultException e) {
+                entityManager.getTransaction().rollback();
+                throw new BusinessException("The user was not found in our database");
+            }
+        }
+    }
+
 }
 

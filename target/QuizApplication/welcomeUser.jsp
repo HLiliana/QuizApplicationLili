@@ -3,14 +3,7 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
-<%
-    UserRepository userRepository = new UserRepository();
-    String loggedInEmail = session.getAttribute("loggedInEmail").toString();
-    String username = session.getAttribute("username").toString();
 
-    // Retrieve the user's existing data based on the logged-in email
-    User user = userRepository.getUserByEmail(loggedInEmail);
-%>
 
 <html>
 <head><meta charset="utf-8">
@@ -23,7 +16,8 @@
 <title>Welcome to the Quiz Application!</title>
 </head>
 <body>
-    <h1>Welcome <%= username %></h1>
+     <h1>Welcome <%=request.getAttribute ("username")%></h1>
+
     <form action="quiz.jsp" method = "post">
         <input type="submit" value="Play Quiz">
     </form>

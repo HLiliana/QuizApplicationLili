@@ -1,4 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
+<%@ page import="com.QuizApplication.exception.BusinessException" %>
+
 <html>
  <head>
      <meta charset="utf-8">
@@ -12,26 +17,29 @@
 </head>
 <body>
 
-<%!
-        UserRepository userRepository = new UserRepository();
-
-        boolean authenticateUser(String email, String password) {
-        return userRepository.authenticateUser(email, password);
-    }
-%>
 <%
     String email = request.getParameter("email");
     String password = request.getParameter("password");
 
+    UserRepository userRepository = new UserRepository();
+
+try{
     // Perform authentication using your preferred approach (e.g., querying the database)
-    boolean isAuthenticated = authenticateUser(email, password);
+    boolean isAuthenticated = userRepository.authenticateUser(email, password);
 
     if (isAuthenticated) {
-      String username = userRepository.getUsernameByEmail(email);
-      request.setAttribute("username", username);
-      request.getRequestDispatcher("welcomeUser.jsp").forward(request, response);
+        String username = userRepository.getUsernameByEmail(email);
+
+        session.setAttribute("username", username);
+        session.setAttribute("loggedInEmail", email);
+        request.getRequestDispatcher("welcomeUser.jsp").forward(request, response);
     } else {
-        response.sendRedirect("error.jsp");
+        response.sendRedirect("errorUser.jsp");
+    }
+
+    } catch (BusinessException e) {
+        request.setAttribute("errorMessage", e.getMessage());
+        request.getRequestDispatcher("errorUser.jsp").forward(request, response);
     }
 %>
 </body>
