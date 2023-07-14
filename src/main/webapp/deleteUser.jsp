@@ -31,6 +31,7 @@
                 }catch (BusinessException e) {
                     request.setAttribute("errorMessage", e.getMessage());
                     request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+
             }
         }
 
