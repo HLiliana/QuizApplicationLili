@@ -101,26 +101,6 @@ public class UserRepository {
             }
         }
     }
-    public User getUserByEmail(String email) throws BusinessException {
-        try (EntityManager entityManager = emFactory.createEntityManager()) {
-            try {
-                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class);
-                query.setParameter("email", email);
-                User user;
-                try {
-                    user = (User) query.getSingleResult();
-                } catch (NoResultException e) {
-                    user = null;
-                }
-                return user;
-            }catch (NoResultException e) {
-                throw new BusinessException("The user search by email was not found in our database");
-            }finally {
-                entityManager.close();
-            }
-        }
-    }
-
     public boolean deleteUser(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -185,6 +165,25 @@ public class UserRepository {
             } catch (NoResultException e) {
                 entityManager.getTransaction().rollback();
                 throw new BusinessException("The user was not found in our database");
+            }
+        }
+    }
+    public User getUserByEmail(String email) throws BusinessException {
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+            try {
+                Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class);
+                query.setParameter("email", email);
+                User user;
+                try {
+                    user = (User) query.getSingleResult();
+                } catch (NoResultException e) {
+                    user = null;
+                }
+                return user;
+            }catch (NoResultException e) {
+                throw new BusinessException("The user search by email was not found in our database");
+            }finally {
+                entityManager.close();
             }
         }
     }
