@@ -20,17 +20,15 @@
                 boolean isDeleted = userRepository.deleteUser(email);
 
                 if (isAuthenticated && isDeleted){
-                    String deleteConfirmationMessage = "User successfully deleted";
-
-                    request.getSession().invalidate();
-                    request.getSession().setAttribute("deleteConfirmationMessage", deleteConfirmationMessage);
-                    response.sendRedirect("index.jsp");
+                    String message = "User successfully deleted";
+                    request.setAttribute("successMessage", message);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }else {
                     throw new BusinessException("User can not be deleted.");
                     }
                 }catch (BusinessException e) {
                     request.setAttribute("errorMessage", e.getMessage());
-                    request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+                    request.getRequestDispatcher("errorUserAdd.jsp").forward(request, response);
             }
         }
 
