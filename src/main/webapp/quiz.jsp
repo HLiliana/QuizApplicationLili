@@ -18,27 +18,18 @@
   </head>
 <body>
 <h1> Please pick a choice</h1>
-
-<table>
-<tr>
-<td><form action="mainQuestion.jsp">
-<input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form> </td>
-<td><form action="mainQuiz.jsp">
-<input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form></td>
-</tr>
-</table>
-
-<form action = "mainQuiz.jsp">
-<input type="button" value="To quizzes" name="mainQuiz"
-    onclick="openPage('mainQuiz.jsp')"/>
-
-    </form>
-    <script type="text/javascript">
-     function openPage(pageURL)
-     {
-     window.location.href = pageURL;
-     }
-    </script>
-
+<div class="center">
+<form action="mainQuestion.jsp">
+<input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form>
+<form action="mainQuiz.jsp">
+<input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form>
+</div>
+<div class="bg-image"
+     style="background-image: url('QuizImage1.avif');
+              background-repeat: no-repeat;
+              background-position: center bottom 100px;
+               background-size: contain;
+            height: 100vh">
+            </div>
 </body>
 </html>

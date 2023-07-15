@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
   </head>
 <body>
-
+<h1>Welcome <%=request.getAttribute ("username")%></h1>
 
 <h1> Table for question <h1/>
 <table>
