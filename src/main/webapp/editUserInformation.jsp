@@ -10,7 +10,7 @@
 </head>
 <body>
 
-     <h1><%=request.getAttribute ("username")%> You can edit account information.</h1>
+     <h1> <%=request.getAttribute ("username")%> You can edit account information.</h1>
 
      <form action="updateUser.jsp" method="post">
           <label for="username">Username:</label>

@@ -3,14 +3,19 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
- <link rel="stylesheet" href="styles.css">
+
 
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+            <link rel="stylesheet" href="styles.css">
 <title>Welcome to the Quiz Application!</title>
 </head>
 
 <body>
+
     <%
         // Retrieve the username from the request
         String username = request.getParameter("username");
@@ -21,18 +26,19 @@
         <input type="submit" value="Play Quiz">
     </form>
 
-    <form action = "updateUser.jsp" method="post">
-    <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-          <br>
-          <input type ="submit" value="Update user">
-    </form>
+    <form action = "editUserInformation.jsp" method="post">
+            <input type ="submit" value="Edit information">
+        </form>
 
-    <form action = "deleteUser.jsp" method = "post">
-    <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-          <br>
-          <input type ="submit" value="Delete user">
-    <form>
+        <form action="index.jsp">
+        <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
+        </form>
+    <div class="bg-image"
+         style="background-image: url('QuizImage1.avif');
+                  background-repeat: no-repeat;
+                  background-position: center bottom 100px;
+                  background-size: contain;
+                  height: 100vh">
+                 </div>
 </body>
 </html>
