@@ -1,8 +1,6 @@
-<%@ page import="com.QuizApplication.repository.UserRepository" %>
+<%@ page import="com.QuizApplication.repository.QuizRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
-<%@ page import="com.QuizApplication.model.User" %>
-
-
+<%@ page import="com.QuizApplication.model.Quiz" %>
 
 <html>
 <head>
