@@ -12,13 +12,19 @@
 </head>
 <body>
 
-<% if(response.getStatus() == 200){ %>
-<font color="red">Error: <%=request.getAttribute("errorMessage") %></font><br>
-
-<%@ include file="index.jsp"%>
-<%}else {%>
-Hi There, error code is <%=response.getStatus() %><br>
-Please go to <a href="/index.jsp">home page</a>
+<% if(response.getStatus() == 500){ %>
+    <font color="red">Error: <%=request.getAttribute("errorMessage") %></font><br>
+//redirectTo sa il pun in update ca parameter sau attribute
+//request cu attribute cu numele fisierului
+    <% String redirectTo = (String)request.getAttribute("redirectTo"); %>
+    <% if (redirectTo != null && redirectTo.contains("editUserInformation")) { %>
+        <%@ include file="editUserInformation.jsp" %>
+    <% } else { %>
+        <%@ include file="index.jsp" %>
+    <% } %>
+<%} else { %>
+    Hi There, error code is <%=response.getStatus() %><br>
+    Please go to <a href="/index.jsp">home page</a>
 <%} %>
 </body>
 </html>
