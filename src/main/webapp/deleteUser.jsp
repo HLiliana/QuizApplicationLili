@@ -1,8 +1,14 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII" errorPage="errorUser.jsp"%>
 <%@ page import="java.util.List" %>
+<html>
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+   <title>Delete User Page</title>
+</head>
+<body>
 
 <%
         String email = request.getParameter("email");
@@ -35,3 +41,5 @@
         }
 
 %>
+</body>
+</html>

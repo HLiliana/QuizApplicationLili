@@ -5,7 +5,11 @@ import com.QuizApplication.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 public class UserRepository {
+    Set<User> userList = new TreeSet<>();
     @PersistenceContext
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 

@@ -26,15 +26,19 @@
                 boolean isAuthenticated = userRepository.authenticateUser(email, password);
 
                 if (isAuthenticated) {
-                    String message = "User successfully added";
-                    request.setAttribute("successMessage", message);
+
+                    session.setAttribute("username", username);
+                    session.setAttribute("loggedInEmail", email);
+
+                    String successMessage = "User successfully added";
+                    request.setAttribute("successMessage", successMessage);
                     request.getRequestDispatcher("successUserAdd.jsp").forward(request, response);
                     } else {
                     throw new BusinessException("User signup failed.");
                     }
                 } catch (BusinessException e) {
                 request.setAttribute("errorMessage", e.getMessage());
-                request.getRequestDispatcher("errorUserAdd.jsp").forward(request, response);
+                request.getRequestDispatcher("errorUser.jsp").forward(request, response);
                 }
         }
 

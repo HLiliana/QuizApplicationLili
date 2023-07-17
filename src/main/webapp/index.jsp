@@ -17,13 +17,13 @@
    <title>Quiz Application</title>
 </head>
 <body>
-         <% //Display the confirmation message if it exists
+         <% //Display the confirmation message if it exists//received from update
          if (session.getAttribute("confirmationMessage") != null) { %>
             <p><%= session.getAttribute("confirmationMessage") %></p>
             <% session.removeAttribute("confirmationMessage"); %>
          <% } %>
 
-         <% //Display the confirmation message if it exists
+         <% //Display the confirmation message if it exists//received from delete
          if (session.getAttribute("deleteConfirmationMessage") != null) { %>
             <p><%= session.getAttribute("deleteConfirmationMessage") %></p>
             <% session.removeAttribute("deleteConfirmationMessage"); %>
