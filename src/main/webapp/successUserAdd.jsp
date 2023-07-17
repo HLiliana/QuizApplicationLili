@@ -37,12 +37,5 @@
     <form action="index.jsp">
     <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
     </form>
-<div class="bg-image"
-     style="background-image: url('QuizImage1.avif');
-              background-repeat: no-repeat;
-              background-position: center bottom 100px;
-              background-size: contain;
-              height: 100vh">
-             </div>
 </body>
 </html>

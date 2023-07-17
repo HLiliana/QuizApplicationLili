@@ -3,7 +3,7 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
+
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
@@ -31,7 +31,7 @@
 
 
 
-<h1>Quiz Application!</h1>
+<h1> Quiz Application! </h1>
                 <form action="login.jsp" method="post">
                 <strong>Email</strong>:<input type="text" name="email" required>
                 <br>
@@ -43,13 +43,6 @@
                 <form action="signup.jsp">
                         <input type="submit" value="Sign Up" class="btn btn-primary btn-block"/>
                         </form>
-<div class="bg-image"
-     style="background-image: url('QuizImage1.avif');
-              background-repeat: no-repeat;
-              background-position: center bottom 100px;
-               background-size: contain;
-            height: 100vh">
-            </div>
 
 </body>
 </html>
