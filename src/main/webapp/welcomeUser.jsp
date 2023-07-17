@@ -25,11 +25,11 @@
 <body>
     <h1>Welcome <%= username %></h1>
     <form action="quiz.jsp" method = "post">
-        <input type="submit" value="Play Quiz">
+        <input type="submit" value="Play Quiz" class="btn btn-primary btn-block>
     </form>
 
     <form action = "editUserInformation.jsp" method="post">
-        <input type ="submit" value="Edit information">
+        <input type ="submit" value="Edit information" class="btn btn-primary btn-block>
     </form>
 
     <form action="index.jsp">
