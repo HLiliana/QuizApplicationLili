@@ -18,7 +18,7 @@
      <link rel="stylesheet" href="styles.css">
   </head>
 <body>
-
+<div style="overflow:scroll; height:500px; margin: 200px">
     <table border="1" class="table table-striped table-hover w-50 p-3">
         <tr>
             <th>ID</th>
@@ -43,6 +43,7 @@
                     </tr>
                 <% } %>
  </table>
+ </div>
  <br/>
  <form action="toAddQuiz.jsp">
  <input type="submit" value="Add a Quiz" class="btn btn-primary btn-block"/>
@@ -88,8 +89,11 @@
 </form>
 
 <br/>
-<form action="quiz.jsp">
+<form action="welcomeUser.jsp">
 <input type="submit" value="To main page" class="btn btn-primary btn-block"/>
+</form>
+<form action="index.jsp">
+<input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
 </form>
 
 

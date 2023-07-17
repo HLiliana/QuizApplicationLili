@@ -29,6 +29,8 @@
             <% session.removeAttribute("deleteConfirmationMessage"); %>
          <% } %>
 
+
+
 <h1>Quiz Application!</h1>
                 <form action="login.jsp" method="post">
                 <strong>Email</strong>:<input type="text" name="email" required>

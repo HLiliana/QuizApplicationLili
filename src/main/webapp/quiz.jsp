@@ -18,12 +18,14 @@
   </head>
 <body>
 <h1> Please pick a choice</h1>
-<div class="center">
 <form action="mainQuestion.jsp">
 <input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form>
 <form action="mainQuiz.jsp">
 <input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form>
-</div>
+<form action="index.jsp">
+<input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
+</form>
+
 <div class="bg-image"
      style="background-image: url('QuizImage1.avif');
               background-repeat: no-repeat;
