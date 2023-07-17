@@ -25,23 +25,16 @@
 <body>
     <h1>Welcome <%= username %></h1>
     <form action="quiz.jsp" method = "post">
-        <input type="submit" value="Play Quiz" class="btn btn-primary btn-block>
+        <input type="submit" value="Play Quiz" class="btn btn-primary btn-block"/>
     </form>
 
     <form action = "editUserInformation.jsp" method="post">
-        <input type ="submit" value="Edit information" class="btn btn-primary btn-block>
+        <input type ="submit" value="Edit information" class="btn btn-primary btn-block"/>
     </form>
 
     <form action="index.jsp">
     <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
     </form>
-<div class="bg-image"
-     style="background-image: url('QuizImage1.avif');
-              background-repeat: no-repeat;
-              background-position: center bottom 100px;
-              background-size: contain;
-              height: 100vh">
-             </div>
 
 </body>
 </html>
