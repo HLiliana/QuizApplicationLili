@@ -1,30 +1,62 @@
-<%@ page import="com.QuizApplication.model.Quiz, com.QuizApplication.repository.QuizRepository" %>
-<%@ page import="com.QuizApplication.model.Question" %>
+
+<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII" errorPage="errorUser.jsp"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.QuizApplication.model.User" %>
+<%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
 
+<html>
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+
+   <title>Add User Page</title>
+</head>
+<body>
 <%
-        String name = request.getParameter("name");
-        String category = request.getParameter("category");
-        String difficulty = request.getParameter("difficulty");
 
-        Quiz quiz = new Quiz(name,category,difficulty);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
 
-    try{
-        QuizRepository repository = new QuizRepository();
-        repository.addQuiz(quiz);
+        String redirectTo = "signup";
 
-        boolean validateName = repository.isNameValid(name);
+        if (!password.equals(confirmPassword)) {
+            String errorMessage = "Passwords do not match. Please try again.";
+            request.getSession().setAttribute("redirectTo", redirectTo);
+            request.setAttribute("errorMessage", errorMessage);
+            request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+        }else{
+            User user = new User(username,password,email,phone);
+            try {
+                UserRepository userRepository = new UserRepository();
+                userRepository.addUser(user);
 
-        if(validateName){
-        String message = "Quiz was added.";
-        request.setAttribute("successMessage", message);
-        request.getRequestDispatcher("successQuizAdd.jsp").forward(request, response);
-        } else {
-                throw new IllegalStateException("Quiz add failed.");
-            }
-        } catch (BusinessException e) {
-            request.setAttribute("errorMessage", e.getMessage());
-            request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
+                boolean isAuthenticated = userRepository.authenticateUser(email, password);
+
+                if (isAuthenticated) {
+                    session.setAttribute("username", username);
+                    session.setAttribute("loggedInEmail", email);
+
+                    String successMessage = "User successfully added";
+
+                    request.getSession().setAttribute("successMessage", successMessage);
+                    response.sendRedirect("successUserAdd.jsp");
+                } else {
+                        request.getSession().invalidate();
+                        request.getSession().setAttribute("redirectTo", redirectTo);
+                        response.sendRedirect("signup.jsp");
+                }
+                } catch (BusinessException e) {
+                    request.getSession().setAttribute("redirectTo", redirectTo);
+                    request.setAttribute("errorMessage", e.getMessage());
+                    request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+                }
         }
     %>
+
+%>
+</body>
+</html>
 

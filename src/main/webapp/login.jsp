@@ -21,6 +21,7 @@
     String email = request.getParameter("email");
     String password = request.getParameter("password");
 
+    String redirectTo = "index";
     UserRepository userRepository = new UserRepository();
 
 try{
@@ -34,10 +35,13 @@ try{
         session.setAttribute("loggedInEmail", email);
         request.getRequestDispatcher("welcomeUser.jsp").forward(request, response);
     } else {
-        response.sendRedirect("errorUser.jsp");
+            request.getSession().invalidate();
+            request.getSession().setAttribute("redirectTo", redirectTo);
+            response.sendRedirect("index.jsp");
     }
 
     } catch (BusinessException e) {
+        request.getSession().setAttribute("redirectTo", redirectTo);
         request.setAttribute("errorMessage", e.getMessage());
         request.getRequestDispatcher("errorUser.jsp").forward(request, response);
     }
