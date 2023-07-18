@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII" errorPage="errorUser.jsp"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.QuizApplication.model.User" %>
@@ -12,6 +13,7 @@
 </head>
 <body>
 <%
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
@@ -52,7 +54,9 @@
                     request.getRequestDispatcher("errorUser.jsp").forward(request, response);
                 }
         }
+    %>
 
 %>
 </body>
 </html>
+
