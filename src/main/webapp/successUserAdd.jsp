@@ -23,7 +23,11 @@
 <title>Welcome to the Quiz Application!</title>
 </head>
 <body>
-
+            <% //Display the confirmation message if it exists//received from update
+            if (session.getAttribute("successMessage") != null) { %>
+                <p><%= session.getAttribute("successMessage") %></p>
+                <% session.removeAttribute("successMessage"); %>
+            <% } %>
 <h1>Welcome <%= username %></h1>
 
     <form action="quiz.jsp" method = "post">

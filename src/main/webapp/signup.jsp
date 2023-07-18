@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page import="java.util.List" %>
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
+<%@ page import="com.QuizApplication.exception.BusinessException" %>
 
 <html>
 <head>

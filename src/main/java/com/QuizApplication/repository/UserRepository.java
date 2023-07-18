@@ -1,5 +1,5 @@
 package com.QuizApplication.repository;
-import com.QuizApplication.model.dto.UserUpdateDto;
+
 import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.User;
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ public class UserRepository {
 
                 if (!isUsernameValid(user.getUsername())) {
                     throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
-                            " must include only letters and digits.");
+                            " must include only spaces, letters and digits.");
                 }
                 if (!isPasswordValid(user.getPassword())) {
                     throw new BusinessException("Password should have at least 6 characters and at least one digit.");
@@ -116,11 +116,7 @@ public class UserRepository {
                 query.setParameter("email", email);
                 int deletedCount = query.executeUpdate();
                 entityManager.getTransaction().commit();
-                if (deletedCount >0){
-                    return true;
-                }else{
-                    return false;
-                }
+                return deletedCount > 0;
             }catch (NoResultException e){
                 throw new BusinessException("The user was not found in our database");
             }
