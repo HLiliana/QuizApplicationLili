@@ -18,6 +18,12 @@
      <link rel="stylesheet" href="styles.css">
   </head>
 <body>
+<%
+  if (session.getAttribute("confirmationMessage") != null) { %>
+            <p><%= session.getAttribute("confirmationMessage") %></p>
+            <% session.removeAttribute("confirmationMessage"); %>
+         <% } %>
+
 <div style="overflow:scroll; height:500px; margin: 200px">
     <table border="1" class="table table-striped table-hover w-50 p-3">
         <tr>
