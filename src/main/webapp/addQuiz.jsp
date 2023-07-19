@@ -7,21 +7,15 @@
         String category = request.getParameter("category");
         String difficulty = request.getParameter("difficulty");
 
-        Quiz quiz = new Quiz(name,category,difficulty);
-
     try{
+        Quiz quiz = new Quiz(name,category,difficulty);
         QuizRepository repository = new QuizRepository();
         repository.addQuiz(quiz);
 
-        boolean validateName = repository.isNameValid(name);
-
-        if(validateName){
-        String message = "Quiz was added.";
-        request.setAttribute("successMessage", message);
+        String successMessage = "Quiz was added.";
+        request.setAttribute("successMessage", successMessage);
         request.getRequestDispatcher("successQuizAdd.jsp").forward(request, response);
-        } else {
-                throw new IllegalStateException("Quiz add failed.");
-            }
+
         } catch (BusinessException e) {
             request.setAttribute("errorMessage", e.getMessage());
             request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
