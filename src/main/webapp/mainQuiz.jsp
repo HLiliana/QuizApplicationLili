@@ -23,6 +23,11 @@
             <p><%= session.getAttribute("confirmationMessage") %></p>
             <% session.removeAttribute("confirmationMessage"); %>
          <% } %>
+         <%
+           if (session.getAttribute("confirmationMessageDelete") != null) { %>
+                     <p><%= session.getAttribute("confirmationMessageDelete") %></p>
+                     <% session.removeAttribute("confirmationMessageDelete"); %>
+                  <% } %>
 
 <div style="overflow:scroll; height:500px; margin: 200px">
     <table border="1" class="table table-striped table-hover w-50 p-3">
@@ -60,11 +65,7 @@
 
      <h3>Delete quiz</h3>
 
-          <form action="deleteQuiz.jsp">
-
-              <div class="form-outline mb-4">
-                  <input type="text" name="id" value="Enter ID..." onclick="this.value=''"/><br/>
-              </div>
+          <form action="toDeleteQuiz.jsp">
              <br/>
           <input type="submit" value="Delete quiz" class="btn btn-primary btn-block"/>
           </form>

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
+import lombok.EqualsAndHashCode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Table(name = "quizzes")
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "name")
 public class Quiz {
 
     @Id
