@@ -5,42 +5,51 @@ import com.QuizApplication.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class UserRepository {
-    Set<User> userList = new TreeSet<>();
+    Set<User> userList = new HashSet<>();
     @PersistenceContext
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 
-    public void addUser(User user) throws BusinessException {
-        try (EntityManager entityManager = emFactory.createEntityManager()) {
-            try {
+    public boolean addUserToSet(User user) throws BusinessException {
+        if (userList.contains(user)) {
+            return false;
+        }
+        if (!isUsernameValid(user.getUsername())) {
+            throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
+                    " must include only spaces, letters and digits.");
+        }
+        if (!isPasswordValid(user.getPassword())) {
+            throw new BusinessException("Password should have at least 6 characters and at least one digit.");
+        }
+        if (!isEmailValid(user.getEmail())) {
+            throw new BusinessException("Email should be valid.");
+        }
+        if (!isPhoneNumberValid(user.getPhone())) {
+            throw new BusinessException("Phone number should be a valid number from Romania.");
+        }
 
-                if (!isUsernameValid(user.getUsername())) {
-                    throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
-                            " must include only spaces, letters and digits.");
-                }
-                if (!isPasswordValid(user.getPassword())) {
-                    throw new BusinessException("Password should have at least 6 characters and at least one digit.");
-                }
-                if (!isEmailValid(user.getEmail())) {
-                    throw new BusinessException("Email should be valid.");
-                }
-                if (!isPhoneNumberValid(user.getPhone())) {
-                    throw new BusinessException("Phone number should be a valid number from Romania.");
-                }
-                entityManager.getTransaction().begin();
-                entityManager.persist(user);
-                entityManager.getTransaction().commit();
-                try {
-                    userList.add(user);
+        userList.add(user);
+        return true;
+    }
+
+    public void addUserToDatabase(User user) throws BusinessException {
+        try {
+            if (addUserToSet(user)) {
+                try (EntityManager entityManager = emFactory.createEntityManager()) {
+                    entityManager.getTransaction().begin();
+                    entityManager.persist(user);
+                    entityManager.getTransaction().commit();
                 } catch (RuntimeException e) {
-                    throw new BusinessException("User already exist in our database, please make sure you enter a unique user. ");
+                    throw new BusinessException("Internal problem with the adding to data base.");
                 }
-            } finally {
-                entityManager.close();
+            } else {
+                throw new BusinessException("User already exists in our data base.");
             }
+        } catch (RuntimeException e) {
+            throw new BusinessException("Internal problem starting our data base.");
         }
     }
 

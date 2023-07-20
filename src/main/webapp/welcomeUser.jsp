@@ -8,6 +8,7 @@
     String loggedInEmail = session.getAttribute("loggedInEmail").toString();
     String username = session.getAttribute("username").toString();
 
+    session.setAttribute("username", username);
     // Retrieve the user's existing data based on the logged-in email
     User user = userRepository.getUserByEmail(loggedInEmail);
 %>

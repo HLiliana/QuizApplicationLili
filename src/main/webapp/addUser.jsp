@@ -31,7 +31,7 @@
             User user = new User(username,password,email,phone);
             try {
                 UserRepository userRepository = new UserRepository();
-                userRepository.addUser(user);
+                userRepository.addUserToDatabase(user);
 
                 boolean isAuthenticated = userRepository.authenticateUser(email, password);
 

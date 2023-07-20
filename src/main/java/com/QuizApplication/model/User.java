@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 @Getter
@@ -11,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"username", "email"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

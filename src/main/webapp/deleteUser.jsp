@@ -11,12 +11,15 @@
 <body>
 
 <%
+        String loggedInEmail = session.getAttribute("loggedInEmail").toString();
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
         String redirectTo = "editUserInformation";
 
+if (loggedInEmail.equals(email)){
         if (!password.equals(confirmPassword)) {
               String errorMessage = "Passwords do not match. Please try again.";
               request.getSession().setAttribute("redirectTo", redirectTo);
@@ -45,7 +48,11 @@
                     request.getRequestDispatcher("errorUser.jsp").forward(request, response);
             }
         }
-
+}else {
+   request.getSession().setAttribute("redirectTo", redirectTo);
+   request.setAttribute("errorMessage", "Delete account option is available just for your logged in information.");
+   request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+}
 %>
 </body>
 </html>
