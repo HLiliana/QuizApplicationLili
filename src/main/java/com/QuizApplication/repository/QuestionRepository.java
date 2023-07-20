@@ -106,17 +106,17 @@ public class QuestionRepository {
 
                 String category = questionData.get("category").getAsString();
                 String difficulty = questionData.get("difficulty").getAsString();
-                String questionDescription = questionData.get("question").getAsString();
                 String correctAnswer = questionData.get("correct_answer").getAsString();
 
                 JsonArray incorrectAnswers = questionData.getAsJsonArray("incorrect_answers");
                 String incorrectAnswer1 = incorrectAnswers.get(0).getAsString();
                 String incorrectAnswer2 = incorrectAnswers.get(0).getAsString();
                 String incorrectAnswer3 = incorrectAnswers.get(0).getAsString();
+                String questionDescription = questionData.get("question").getAsString();
 
 
-                return new Question(category, difficulty, questionDescription, correctAnswer,
-                        incorrectAnswer1, incorrectAnswer2, incorrectAnswer3);
+                return new Question(category, difficulty, correctAnswer, incorrectAnswer1, incorrectAnswer2,
+                        incorrectAnswer3, questionDescription);
 
             }
         } catch (IOException | InterruptedException ignored) {
