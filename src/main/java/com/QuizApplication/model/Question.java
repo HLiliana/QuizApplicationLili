@@ -17,24 +17,25 @@ public class Question {
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String questionDescription;
+    private String category;
+    private String difficulty;
+    private String correctAnswer;
     private String incorrectAnswer1;
     private String incorrectAnswer2;
     private String incorrectAnswer3;
-    private String correctAnswer;
-    private String category;
-    private String difficulty;
+    private String questionDescription;
+
 
     @ManyToMany(mappedBy = "questionList")
     private List<Quiz> quizList;
 
-    public Question(String category, String difficulty, String questionDescription, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2, String incorrectAnswer3) {
-        this.questionDescription = questionDescription;
+    public Question(String category, String difficulty, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2, String incorrectAnswer3, String questionDescription) {
+        this.category = category;
+        this.difficulty = difficulty;
+        this.correctAnswer = correctAnswer;
         this.incorrectAnswer1 = incorrectAnswer1;
         this.incorrectAnswer2 = incorrectAnswer2;
         this.incorrectAnswer3 = incorrectAnswer3;
-        this.correctAnswer = correctAnswer;
-        this.category = category;
-        this.difficulty = difficulty;
+        this.questionDescription = questionDescription;
     }
 }
