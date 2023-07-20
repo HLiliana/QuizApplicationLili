@@ -43,7 +43,7 @@ public class UserRepository {
                     entityManager.persist(user);
                     entityManager.getTransaction().commit();
                 } catch (RuntimeException e) {
-                    throw new BusinessException("Internal problem with the adding to data base.");
+                    throw new BusinessException("Internal problem with adding to data base.");
                 }
             } else {
                 throw new BusinessException("User already exists in our data base.");
