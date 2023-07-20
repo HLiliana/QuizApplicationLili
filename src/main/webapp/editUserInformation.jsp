@@ -7,6 +7,9 @@
 <%
     UserRepository userRepository = new UserRepository();
     String loggedInEmail = session.getAttribute("loggedInEmail").toString();
+    String username = session.getAttribute("username").toString();
+
+    session.setAttribute("loggedInEmail", loggedInEmail);
 
     User user = userRepository.getUserByEmail(loggedInEmail);
 %>
@@ -16,7 +19,7 @@
     <title>Update Account Information</title>
 </head>
 <body>
-    <h1>Account Information.</h1>
+    <h1>Account Information for <%=username%></h1>
 
     <form action="updateUser.jsp" method="post">
         <label for="username">Username:</label>
