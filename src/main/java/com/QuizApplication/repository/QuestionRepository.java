@@ -14,6 +14,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @PersistenceContext
 public class QuestionRepository {
@@ -34,7 +36,8 @@ public class QuestionRepository {
 
 
     public void addQuestion(Question question) {
-        try(EntityManager entityManager = emFactory.createEntityManager()){;
+        try (EntityManager entityManager = emFactory.createEntityManager()) {
+
             entityManager.getTransaction().begin();
             entityManager.persist(question);
             entityManager.getTransaction().commit();
@@ -156,12 +159,28 @@ public class QuestionRepository {
                             incorrectAnswer1, incorrectAnswer2, incorrectAnswer3);
                     questionList.add(question);
                 }
-                return  questionList;
+                return questionList;
             }
-        }catch (IOException | InterruptedException ignored) {
+        } catch (IOException | InterruptedException ignored) {
             throw new BusinessException("Did not receive questions from API");
         }
         throw new RuntimeException("can't get data");
+    }
+
+    public List<Question> randomQuestionList(String numberOfQuestions, List<Question> questionList) {
+        Random rand = new Random();
+
+//        if(category.equals(question.getCategory())) {
+//            for (int i = 0; i < numberOfQuestions; i++) {
+//                int randomIndex = rand.nextInt(questionList.size());
+//                Question randomQuestion = questionList.get(randomIndex);
+//                randomQuestionList.add(randomQuestion);
+//            }
+//        }
+        return rand.
+                ints(Long.parseLong(numberOfQuestions), 0, questionList.size()).
+                mapToObj(i -> questionList.get(i)).
+                toList();
     }
 }
 
