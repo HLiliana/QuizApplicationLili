@@ -1,8 +1,9 @@
 package com.QuizApplication.model;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.EqualsAndHashCode;
 
-
+@EqualsAndHashCode
 @Entity
 @Table(name = "users")
 @Getter

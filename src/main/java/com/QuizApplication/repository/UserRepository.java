@@ -33,7 +33,11 @@ public class UserRepository {
                 entityManager.getTransaction().begin();
                 entityManager.persist(user);
                 entityManager.getTransaction().commit();
-
+                try {
+                    userList.add(user);
+                } catch (RuntimeException e) {
+                    throw new BusinessException("User already exist in our database, please make sure you enter a unique user. ");
+                }
             } finally {
                 entityManager.close();
             }
@@ -66,7 +70,7 @@ public class UserRepository {
 
     private boolean isUsernameValid(String username) {
         // string between 6-50, accepts only spaces, letters and digits
-        String usernameValidation ="^[a-zA-Z0-9 ]{6,50}$";
+        String usernameValidation = "^[a-zA-Z0-9 ]{6,50}$";
         return username.matches(usernameValidation);
     }
 
@@ -105,6 +109,7 @@ public class UserRepository {
             }
         }
     }
+
     public boolean deleteUser(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -117,11 +122,12 @@ public class UserRepository {
                 int deletedCount = query.executeUpdate();
                 entityManager.getTransaction().commit();
                 return deletedCount > 0;
-            }catch (NoResultException e){
+            } catch (NoResultException e) {
                 throw new BusinessException("The user was not found in our database");
             }
         }
     }
+
     public User updateUserByEmail(String username, String password, String email, String phone) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -168,6 +174,7 @@ public class UserRepository {
             }
         }
     }
+
     public User getUserByEmail(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -180,9 +187,9 @@ public class UserRepository {
                     user = null;
                 }
                 return user;
-            }catch (NoResultException e) {
+            } catch (NoResultException e) {
                 throw new BusinessException("The user search by email was not found in our database");
-            }finally {
+            } finally {
                 entityManager.close();
             }
         }
