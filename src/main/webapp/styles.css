@@ -12,6 +12,7 @@ body {
 
 
 }
+
 #table-wrapper {
   position:relative;
 }
@@ -36,4 +37,8 @@ body {
   width:35%;
   border:1px solid red;
 }
+.navbar-custom {
+    background-color: #e3f2fd;
+}
+
 

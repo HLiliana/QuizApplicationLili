@@ -88,7 +88,7 @@ public class QuestionRepository {
     public Question getQuestionsFromApi() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://opentdb.com/api.php?amount=10&category=22&type=multiple"))
+                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=22&difficulty=easy&type=multiple"))
                 .build();
 
         try {
@@ -125,7 +125,7 @@ public class QuestionRepository {
     public List<Question> getMultipleQuestions() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=22&difficulty=medium&type=multiple"))
+                .uri(URI.create("https://opentdb.com/api.php?amount=20&category=27&difficulty=easy&type=multiple"))
                 .build();
 
         try {
