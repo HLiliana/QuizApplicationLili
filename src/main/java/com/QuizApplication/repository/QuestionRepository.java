@@ -34,16 +34,11 @@ public class QuestionRepository {
 
 
     public void addQuestion(Question question) {
-        try(EntityManager entityManager = emFactory.createEntityManager()){;
-            entityManager.getTransaction().begin();
-            entityManager.persist(question);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            throw e;
-        } finally {
-            entityManager.close();
-        }
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(question);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     public Question findQuestionById(String id) throws Exception {
@@ -58,9 +53,10 @@ public class QuestionRepository {
             throw new Exception("Name cannot be null");
 
         }
-        Query jpqlQuery = entityManager.createQuery("SELECT q FROM Question q WHERE q.questionDescription LIKE:customQuestionDescription");
-        jpqlQuery.setParameter("customQuestionDescription", name);
-        return (Question) jpqlQuery.getSingleResult();
+        Query query = entityManager.createQuery("SELECT q FROM Question q WHERE q.questionDescription ILIKE:customQuestionDescription");
+        query.setParameter("customQuestionDescription", name);
+        Question question = (Question) query.getSingleResult();
+        return question;
     }
 
     public void deleteQuestion(Question question) {
@@ -156,9 +152,9 @@ public class QuestionRepository {
                             incorrectAnswer1, incorrectAnswer2, incorrectAnswer3);
                     questionList.add(question);
                 }
-                return  questionList;
+                return questionList;
             }
-        }catch (IOException | InterruptedException ignored) {
+        } catch (IOException | InterruptedException ignored) {
             throw new BusinessException("Did not receive questions from API");
         }
         throw new RuntimeException("can't get data");

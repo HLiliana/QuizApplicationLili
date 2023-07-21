@@ -1,9 +1,8 @@
 package com.QuizApplication.repository;
-import com.QuizApplication.model.dto.UserUpdateDto;
+
 import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.User;
 import jakarta.persistence.*;
-import lombok.*;
 
 public class UserRepository {
     @PersistenceContext
@@ -14,8 +13,7 @@ public class UserRepository {
             try {
 
                 if (!isUsernameValid(user.getUsername())) {
-                    throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
-                            " must include only letters and digits.");
+                    throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," + " must include only letters and digits.");
                 }
                 if (!isPasswordValid(user.getPassword())) {
                     throw new BusinessException("Password should have at least 6 characters and at least one digit.");
@@ -62,7 +60,7 @@ public class UserRepository {
 
     private boolean isUsernameValid(String username) {
         // string between 6-50, accepts only spaces, letters and digits
-        String usernameValidation ="^[a-zA-Z0-9 ]{6,50}$";
+        String usernameValidation = "^[a-zA-Z0-9 ]{6,50}$";
         return username.matches(usernameValidation);
     }
 
@@ -101,6 +99,7 @@ public class UserRepository {
             }
         }
     }
+
     public boolean deleteUser(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -112,16 +111,17 @@ public class UserRepository {
                 query.setParameter("email", email);
                 int deletedCount = query.executeUpdate();
                 entityManager.getTransaction().commit();
-                if (deletedCount >0){
+                if (deletedCount > 0) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
-            }catch (NoResultException e){
+            } catch (NoResultException e) {
                 throw new BusinessException("The user was not found in our database");
             }
         }
     }
+
     public User updateUserByEmail(String username, String password, String email, String phone) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -136,8 +136,7 @@ public class UserRepository {
                         if (isUsernameValid(username)) {
                             user.setUsername(username);
                         } else {
-                            throw new BusinessException("Username should be at least 6 characters long and maximum 50 characters," +
-                                    " must include only letters and digits.");
+                            throw new BusinessException("Username should be at least 6 characters long and maximum 50 characters," + " must include only letters and digits.");
                         }
                     }
                     if (!password.isEmpty()) {
@@ -168,6 +167,7 @@ public class UserRepository {
             }
         }
     }
+
     public User getUserByEmail(String email) throws BusinessException {
         try (EntityManager entityManager = emFactory.createEntityManager()) {
             try {
@@ -180,9 +180,9 @@ public class UserRepository {
                     user = null;
                 }
                 return user;
-            }catch (NoResultException e) {
+            } catch (NoResultException e) {
                 throw new BusinessException("The user search by email was not found in our database");
-            }finally {
+            } finally {
                 entityManager.close();
             }
         }

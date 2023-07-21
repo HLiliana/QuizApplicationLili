@@ -10,9 +10,9 @@
 
 
     <%
-            String id = request.getParameter("id");
-              QuizRepository repository = new QuizRepository();
-              Quiz quiz = repository.findById(id);
+          String id = request.getParameter("id");
+          QuizRepository repository = new QuizRepository();
+          Quiz quiz = repository.findById(id);
           repository.deleteQuiz(quiz);
 
         %>
