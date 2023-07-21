@@ -15,7 +15,6 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @PersistenceContext
 public class QuestionRepository {
@@ -36,17 +35,11 @@ public class QuestionRepository {
 
 
     public void addQuestion(Question question) {
-        try (EntityManager entityManager = emFactory.createEntityManager()) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(question);
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
-            entityManager.getTransaction().begin();
-            entityManager.persist(question);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            throw e;
-        } finally {
-            entityManager.close();
-        }
     }
 
     public Question findQuestionById(String id) throws Exception {
