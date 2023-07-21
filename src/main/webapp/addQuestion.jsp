@@ -10,9 +10,9 @@
         String incorrectAnswer2 = request.getParameter("incorrectAnswer2");
         String incorrectAnswer3 = request.getParameter("incorrectAnswer3");
         QuestionRepository repository = new QuestionRepository();
-        Question question = new Question(questionDescription,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3,correctAnswer,category,difficulty);
+        Question question = new Question(questionDescription,category,difficulty, correctAnswer,incorrectAnswer1,incorrectAnswer2,incorrectAnswer3);
 
         repository.addQuestion(question);
 
     %>
-<meta http-equiv="Refresh" content="0; url='/quiz/mainQuestion.jsp" />
+<meta http-equiv="Refresh" content="0; url='/quizapp/mainQuestion.jsp" />
