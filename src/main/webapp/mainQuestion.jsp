@@ -57,10 +57,7 @@
 </table>
   </div>
 
-<form action="randomQuestion.jsp">
-         <div class="form-outline mb-4">
-         <input type="text" name="numberOfQuestions" value="Enter Number..." onclick="this.value=''"/><br/>
-                 </div>
+<form action="toRandomQuestion.jsp">
          <input type="submit" value="Create Random Questions" class="btn btn-primary btn-block"/>
          </form>
 
