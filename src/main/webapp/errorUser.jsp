@@ -10,7 +10,6 @@
     <title>Error Page</title>
 </head>
 <body>
-
 <% if (response.getStatus() == 200) { %>
     <font color="red">Error: <%= request.getAttribute("errorMessage") %></font><br>
     <% String redirectTo = session.getAttribute("redirectTo").toString(); %>

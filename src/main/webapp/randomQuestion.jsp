@@ -40,9 +40,12 @@
            </tr>
        <%
                    String numberOfQuestions = request.getParameter("numberOfQuestions");
+                   String category = request.getParameter("category");
+                   String difficulty = request.getParameter("difficulty");
                    QuestionRepository questionRepo = new QuestionRepository();
                    List<Question> questionList = questionRepo.getAllQuestions();
-                   List<Question> randomList = questionRepo.randomQuestionList(numberOfQuestions, questionList);
+                   List<Question> aSortedList = questionRepo.groupByCategoryAndDifficulty(category, difficulty, questionList);
+                   List<Question> randomList = questionRepo.completeRandomQuestionList(numberOfQuestions, aSortedList);
                    for (Question question : randomList) {
                %>
                    <tr>

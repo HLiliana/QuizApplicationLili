@@ -13,8 +13,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @PersistenceContext
 public class QuestionRepository {
@@ -163,17 +167,27 @@ public class QuestionRepository {
     public List<Question> randomQuestionList(String numberOfQuestions, List<Question> questionList) {
         Random rand = new Random();
 
-//        if(category.equals(question.getCategory())) {
-//            for (int i = 0; i < numberOfQuestions; i++) {
-//                int randomIndex = rand.nextInt(questionList.size());
-//                Question randomQuestion = questionList.get(randomIndex);
-//                randomQuestionList.add(randomQuestion);
-//            }
-//        }
         return rand.
-                ints(Long.parseLong(numberOfQuestions), 0, questionList.size()).
-                mapToObj(i -> questionList.get(i)).
+                ints(Long.parseLong(numberOfQuestions), 0, questionList.size())
+
+                .mapToObj(i -> questionList.get(i)).
                 toList();
+    }
+    public List<Question> groupByCategoryAndDifficulty (String category, String difficulty, List<Question> questionList) {
+
+        return questionList.stream()
+                .filter(question -> question.getCategory().equals(category) && question.getDifficulty().equals(difficulty))
+                .toList();
+
+    }
+    public List<Question> completeRandomQuestionList(String numberOfQuestions, List<Question> aQuestionList) {
+        Random rand = new Random();
+        return rand
+
+                .ints(Long.parseLong(numberOfQuestions), 0, aQuestionList.size())
+                .mapToObj(aQuestionList::get)
+                .toList();
+
     }
 }
 
