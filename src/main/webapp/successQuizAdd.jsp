@@ -41,7 +41,7 @@
                         <td><%= quiz.getName() %></td>
                         <td><%= quiz.getCategory() %></td>
                         <td><%= quiz.getDifficulty() %></td>
-                        <td><%= quiz.getQuestionsAsCsv() %></td>
+                        <td><%= quiz.getQuestionList().size() %></td>
                     </tr>
                 <% } %>
  </table>

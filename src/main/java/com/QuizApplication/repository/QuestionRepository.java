@@ -180,14 +180,23 @@ public class QuestionRepository {
                 .toList();
 
     }
-    public List<Question> completeRandomQuestionList(String numberOfQuestions, List<Question> aQuestionList) {
+    public List<Question> completeRandomQuestionList(String numberOfQuestions, List<Question> aQuestionList) throws BusinessException {
         Random rand = new Random();
-        return rand
+        List<Question> aRandomList;
+        if (Integer.parseInt(numberOfQuestions) >= aQuestionList.size()) {
+            throw new BusinessException("The number of questions must be lower then " + aQuestionList.size());
+        }
+        try {
 
-                .ints(Long.parseLong(numberOfQuestions), 0, aQuestionList.size())
-                .mapToObj(aQuestionList::get)
-                .toList();
+            aRandomList = rand
 
+                    .ints(Long.parseLong(numberOfQuestions), 0, aQuestionList.size())
+                    .mapToObj(aQuestionList::get)
+                    .toList();
+        } catch (Exception e) {
+            throw new BusinessException("Something went wrong");
+        }
+        return aRandomList;
     }
 }
 

@@ -43,22 +43,34 @@
                    String category = request.getParameter("category");
                    String difficulty = request.getParameter("difficulty");
                    QuestionRepository questionRepo = new QuestionRepository();
-                   List<Question> questionList = questionRepo.getAllQuestions();
-                   List<Question> aSortedList = questionRepo.groupByCategoryAndDifficulty(category, difficulty, questionList);
-                   List<Question> randomList = questionRepo.completeRandomQuestionList(numberOfQuestions, aSortedList);
-                   for (Question question : randomList) {
-               %>
-                   <tr>
-                       <td><%= question.getId() %></td>
-                       <td><%= question.getQuestionDescription() %></td>
-                       <td><%= question.getCategory() %></td>
-                       <td><%= question.getDifficulty() %></td>
-                       <td><%= question.getCorrectAnswer() %></td>
-                       <td><%= question.getIncorrectAnswer1() %></td>
-                       <td><%= question.getIncorrectAnswer2() %></td>
-                       <td><%= question.getIncorrectAnswer3() %></td>
-                   </tr>
-               <% } %>
+                   try{
+                         List<Question> questionList = questionRepo.getAllQuestions();
+                         List<Question> aSortedList = questionRepo.groupByCategoryAndDifficulty(category, difficulty, questionList);
+                         List<Question> randomList = questionRepo.completeRandomQuestionList(numberOfQuestions, aSortedList);
+                         for (Question question : randomList) {
+                                  %>
+                                      <tr>
+                                          <td><%= question.getId() %></td>
+                                          <td><%= question.getQuestionDescription() %></td>
+                                          <td><%= question.getCategory() %></td>
+                                          <td><%= question.getDifficulty() %></td>
+                                          <td><%= question.getCorrectAnswer() %></td>
+                                          <td><%= question.getIncorrectAnswer1() %></td>
+                                          <td><%= question.getIncorrectAnswer2() %></td>
+                                          <td><%= question.getIncorrectAnswer3() %></td>
+                                      </tr>
+                                  <% }
+                           String randomConfirmationMessage = "Your list has been created.";
+                           request.getSession().invalidate();
+                           request.getSession().setAttribute("confirmationMessage", randomConfirmationMessage);
+                           response.sendRedirect("mainQuiz.jsp");
+
+                           } catch(BusinessException e){
+
+                           request.setAttribute("errorMessage", e.getMessage());
+                           request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
+                           }
+%>
 </table>
   </div>
 
