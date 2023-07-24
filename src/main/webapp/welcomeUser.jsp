@@ -37,5 +37,9 @@
     <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
     </form>
 
+    <form action="test.jsp">
+        <input type="submit" value="To test" class="btn btn-primary btn-block"/>
+        </form>
+
 </body>
 </html>
