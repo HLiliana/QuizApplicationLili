@@ -38,12 +38,47 @@ public class QuestionRepository {
     }
 
 
-    public void addQuestion(Question question) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(question);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+    public void addQuestion(Question question) throws BusinessException {
+        try {
+            if (!isQuestionDataValid(question.getQuestionDescription())) {
+                throw new BusinessException("Question cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getCategory())) {
+                throw new BusinessException("Question category cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getDifficulty())) {
+                throw new BusinessException("Question difficulty cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getCorrectAnswer())) {
+                throw new BusinessException("Correct answer cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getIncorrectAnswer1())) {
+                throw new BusinessException("Incorrect answer 1 cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getIncorrectAnswer2())) {
+                throw new BusinessException("Incorrect answer 2 cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            if (!isQuestionDataValid(question.getIncorrectAnswer3())) {
+                throw new BusinessException("Incorrect answer 3 cannot be null and should be between 1 and 255"
+                        + "characters.");
+            }
+            entityManager.getTransaction().begin();
+            entityManager.persist(question);
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+        }
+    }
 
+    public boolean isQuestionDataValid(String data) {
+        String dataValidation = "^[\\s\\S]{0,255}$";
+        return data.matches(dataValidation);
     }
 
     public Question findQuestionById(String id) throws Exception {
