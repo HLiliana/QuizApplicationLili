@@ -1,6 +1,7 @@
 package com.QuizApplication.repository;
 
 import com.QuizApplication.exception.BusinessException;
+import com.QuizApplication.model.Question;
 import com.QuizApplication.model.Quiz;
 import jakarta.persistence.*;
 import jakarta.servlet.annotation.WebServlet;
@@ -157,8 +158,13 @@ public class QuizRepository {
 //        }
 //        return entityManager.find(Quiz.class, id);
 //    }
-
-
+    public Quiz createQuiz(String category, String difficulty, List<Question> questions, String name) {
+        Quiz quiz = new Quiz();
+        if(isQuizDataValid(category) && isQuizDataValid(difficulty) && isQuizDataValid(name)) {
+             quiz = new Quiz(name, category, difficulty, questions);
+        }
+        return quiz;
+    }
 }
 
 

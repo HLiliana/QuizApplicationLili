@@ -50,12 +50,21 @@
                         <td><%= quiz.getName() %></td>
                         <td><%= quiz.getCategory() %></td>
                         <td><%= quiz.getDifficulty() %></td>
-                        <td><%= quiz.getQuestionsAsCsv() %></td>
+                        <td><%= quiz.getQuestionList().size() %></td>
                     </tr>
                 <% } %>
  </table>
  </div>
  <br/>
+ <h3>Create a quiz</h3>
+
+           <form action="toCreateAQuiz.jsp">
+              <br/>
+           <input type="submit" value="Create a quiz" class="btn btn-primary btn-block"/>
+           </form>
+
+
+
  <form action="toAddQuiz.jsp">
  <input type="submit" value="Add a Quiz" class="btn btn-primary btn-block"/>
  </form>

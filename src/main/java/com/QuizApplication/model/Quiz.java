@@ -45,4 +45,10 @@ public class Quiz {
         this.difficulty = difficulty;
     }
 
+    public Quiz(String name, String category, String difficulty, List<Question> questionList) {
+        this.name = name;
+        this.category = category;
+        this.difficulty = difficulty;
+        this.questionList = questionList;
+    }
 }
