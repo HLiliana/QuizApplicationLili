@@ -15,7 +15,7 @@ import java.util.Set;
 public class QuizRepository {
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
     EntityManager entityManager = emFactory.createEntityManager();
-
+    private List<Quiz> quizList;
     Set<Quiz> quizSet = new HashSet<>();
     public List<Quiz> getAllQuizzes() {
 
@@ -158,13 +158,39 @@ public class QuizRepository {
 //        }
 //        return entityManager.find(Quiz.class, id);
 //    }
-    public Quiz createQuiz(String category, String difficulty, List<Question> questions, String name) {
+    public Quiz createQuiz(String category, String difficulty, List<Question> questions, String name) throws BusinessException {
         Quiz quiz = new Quiz();
-        if(isQuizDataValid(category) && isQuizDataValid(difficulty) && isQuizDataValid(name)) {
-             quiz = new Quiz(name, category, difficulty, questions);
+        if (isQuizDataValid(name)) {
+            quiz.setName(name);
+        }
+        else {
+            throw new BusinessException("Quiz name should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if(isQuizDataValid(category)) {
+            quiz.setCategory(category);
+        }
+        else {
+            throw new BusinessException("Quiz category should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if(isQuizDataValid(difficulty)) {
+            quiz.setDifficulty(difficulty);
+        }
+        else {
+            throw new BusinessException("Quiz new difficulty should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if(questions.size() > 0) {
+            quiz.setQuestionList(questions);
+        }
+        else {
+            throw new BusinessException("Quiz list of questions cannot be empty");
         }
         return quiz;
+        }
+
     }
-}
+
 
 

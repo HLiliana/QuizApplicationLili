@@ -14,8 +14,9 @@ import java.util.List;
 public class Question {
 
     @Id
-    @Column(name ="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @OrderBy("id")
     private int id;
 
     private String questionDescription;

@@ -63,7 +63,7 @@
                            String randomConfirmationMessage = "Your list has been created.";
                            request.getSession().invalidate();
                            request.getSession().setAttribute("confirmationMessage", randomConfirmationMessage);
-                           response.sendRedirect("mainQuiz.jsp");
+
 
                            } catch(BusinessException e){
 
@@ -71,8 +71,11 @@
                            request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
                            }
 %>
+
 </table>
   </div>
-
+<form action="index.jsp">
+                <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
+                </form>
   </body>
   </html>
