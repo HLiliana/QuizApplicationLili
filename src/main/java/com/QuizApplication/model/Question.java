@@ -28,8 +28,10 @@ public class Question {
     private String incorrectAnswer3;
 
 
-    @ManyToMany(mappedBy = "questionList")
-    private List<Quiz> quizList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
+
 
     public Question(String questionDescription, String category, String difficulty, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2, String incorrectAnswer3) {
         this.questionDescription = questionDescription;

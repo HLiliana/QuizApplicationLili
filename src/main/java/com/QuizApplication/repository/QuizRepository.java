@@ -158,7 +158,7 @@ public class QuizRepository {
 //        }
 //        return entityManager.find(Quiz.class, id);
 //    }
-    public Quiz createQuiz(String category, String difficulty, List<Question> questions, String name) throws BusinessException {
+    public Quiz createQuiz(String name,String category, String difficulty, List<Question> questions) throws BusinessException {
         Quiz quiz = new Quiz();
         if (isQuizDataValid(name)) {
             quiz.setName(name);

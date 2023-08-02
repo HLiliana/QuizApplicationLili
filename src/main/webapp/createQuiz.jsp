@@ -1,6 +1,7 @@
 <%@ page import="com.QuizApplication.model.Quiz, com.QuizApplication.repository.QuizRepository" %>
 <%@ page import="com.QuizApplication.model.Question, com.QuizApplication.repository.QuestionRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
+<%@ page import="java.util.List" %>
 
 <%
         String name = request.getParameter("name");
@@ -13,7 +14,7 @@
         List<Question> aSortedList = questionRepo.groupByCategoryAndDifficulty(category, difficulty, questionList);
         List<Question> randomList = questionRepo.completeRandomQuestionList(numberOfQuestions, aSortedList);
         QuizRepository repository = new QuizRepository();
-        Quiz quiz = repository.createQuiz(name, category, difficulty, randomList)
+        Quiz quiz = repository.createQuiz(name, category, difficulty, randomList);
         repository.addQuiz(quiz);
 
         String successMessage = "Quiz was added.";

@@ -2,7 +2,7 @@
 
 <h2>Add a quiz</h2>
 
-     <form action="addQuiz.jsp">
+     <form action="createQuiz.jsp">
          <div class="form-outline mb-4">
              <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
          </div>
