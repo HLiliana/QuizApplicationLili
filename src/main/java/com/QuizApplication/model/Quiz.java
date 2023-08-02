@@ -26,11 +26,11 @@ public class Quiz {
     private String category;
     private String difficulty;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "quizzes_questions",
-            joinColumns = {@JoinColumn(name = "quiz_id")},
-            inverseJoinColumns = {@JoinColumn(name = "question_id")}
+            joinColumns = { @JoinColumn(name = "quiz_id") },
+            inverseJoinColumns = { @JoinColumn(name = "question_id") }
     )
     @Fetch(FetchMode.JOIN)
     private List<Question> questionList;
