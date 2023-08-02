@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"username", "email"})
+@EqualsAndHashCode(of = {"username","password" ,"userRole","email", "phone"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

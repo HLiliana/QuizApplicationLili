@@ -10,6 +10,12 @@ import java.util.Set;
 
 public class UserRepository {
     Set<User> userList = new HashSet<>();
+    //entityManager as private and with set,
+    //so I can use it in Test as well
+    private EntityManager entityManager;
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
     @PersistenceContext
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 
@@ -17,20 +23,19 @@ public class UserRepository {
         if (userList.contains(user)) {
             return false;
         }
-        if (!isUsernameValid(user.getUsername())) {
+        if (user.getUsername() == null || !isUsernameValid(user.getUsername())) {
             throw new BusinessException("Username should be at least 6 characters long and maxim 50 characters," +
                     " must include only spaces, letters and digits.");
         }
-        if (!isPasswordValid(user.getPassword())) {
+        if (user.getPassword() == null || !isPasswordValid(user.getPassword())) {
             throw new BusinessException("Password should have at least 6 characters and at least one digit.");
         }
-        if (!isEmailValid(user.getEmail())) {
+        if (user.getEmail() == null || !isEmailValid(user.getEmail())) {
             throw new BusinessException("Email should be valid.");
         }
-        if (!isPhoneNumberValid(user.getPhone())) {
+        if (user.getPhone() == null || !isPhoneNumberValid(user.getPhone())) {
             throw new BusinessException("Phone number should be a valid number from Romania.");
         }
-
         userList.add(user);
         return true;
     }
@@ -71,6 +76,7 @@ public class UserRepository {
 
                 return true;
             } catch (RuntimeException e) {
+                e.printStackTrace();
                 throw new BusinessException("An error occurred while authenticating the user.");
             }
         }
