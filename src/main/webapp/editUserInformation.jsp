@@ -16,6 +16,7 @@
 
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <link rel="stylesheet" href="style2.css">
     <title>Update Account Information</title>
 </head>
 <body>
