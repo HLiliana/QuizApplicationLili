@@ -19,13 +19,44 @@
   </head>
 <body>
 <h1> Please pick a choice</h1>
-<form action="mainQuestion.jsp">
-<input type="submit" value="To Questions" class="btn btn-primary btn-block"/> </form>
-<form action="mainQuiz.jsp">
-<input type="submit" value="To Quiz" class="btn btn-primary btn-block"/> </form>
-<form action="index.jsp">
-<input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
-</form>
+
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
+
+
+<ul>
+  <li><a href="mainQuiz.jsp">To quiz</a></li>
+  <li><a href="mainQuestion.jsp">To questions</a></li>
+
+
+  <li style="float:right"><a href="index.jsp">Back to login</a></li>
+</ul>
+
 
 </body>
 </html>

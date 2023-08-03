@@ -17,43 +17,30 @@
    <title>Quiz Application</title>
 </head>
 <body>
+         <% //Display the confirmation message if it exists//received from update
+         if (session.getAttribute("confirmationMessage") != null) { %>
+            <p><%= session.getAttribute("confirmationMessage") %></p>
+            <% session.removeAttribute("confirmationMessage"); %>
+         <% } %>
 
-<h1> Welcome to Quiz ME! </h1>
-
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #D18812;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: blue;
-  text-align: center;
-  font-weight: bold;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #c7d112;
-}
-</style>
+         <% //Display the confirmation message if it exists//received from delete
+         if (session.getAttribute("deleteConfirmationMessage") != null) { %>
+            <p><%= session.getAttribute("deleteConfirmationMessage") %></p>
+            <% session.removeAttribute("deleteConfirmationMessage"); %>
+         <% } %>
 
 
-<ul>
-  <li style="float:right"><a href="signup.jsp">Sign Up</a></li>
-  <li style="float:right"><a href="toLogin.jsp">Login</a></li>
 
+<h1> Login </h1>
+                <form action="login.jsp" method="post">
+                <strong>Email</strong>:<input type="text" name="email" required>
+                <br>
+                <strong>Password</strong>:<input type="password" name="password" required>
+                <br>
+                <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+                <br>
+                </form>
 
-</ul>
 
 </body>
 </html>

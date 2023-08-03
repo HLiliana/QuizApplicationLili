@@ -18,10 +18,47 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 <body>
-<h1>Welcome <%=session.getAttribute ("username")%></h1>
 
-<h1> All Questions available <h1/>
-<div style="overflow:scroll; height:400px; width:600px;">
+<h1> Question </h1>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
+
+
+<ul>
+  <li><a href="toAddQuestion.jsp">Add question</a></li>
+  <li><a href="toRandomQuestion.jsp">Create random questions</a></li>
+  <li><a href="toUpdateQuestion.jsp">Update question</a></li>
+  <li><a href="deleteQuestion.jsp">Delete question</a></li>
+  <li><a href="findQuestionById.jsp">Search by Id</a></li>
+  <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
+
+
+</ul>
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">

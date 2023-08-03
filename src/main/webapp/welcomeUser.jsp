@@ -3,6 +3,7 @@
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
+
 <%
     UserRepository userRepository = new UserRepository();
     String loggedInEmail = session.getAttribute("loggedInEmail").toString();
@@ -25,21 +26,44 @@
 </head>
 <body>
     <h1>Welcome <%= username %></h1>
-    <form action="quiz.jsp" method = "post">
-        <input type="submit" value="Play Quiz" class="btn btn-primary btn-block"/>
-    </form>
+<style>
 
-    <form action = "editUserInformation.jsp" method="post">
-        <input type ="submit" value="Edit information" class="btn btn-primary btn-block"/>
-    </form>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
 
-    <form action="index.jsp">
-    <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
-    </form>
+li {
+  float: left;
+}
 
-    <form action="test.jsp">
-        <input type="submit" value="To test" class="btn btn-primary btn-block"/>
-        </form>
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
+
+
+<ul>
+  <li><a href="quiz.jsp">Play quiz</a></li>\
+    <li style="float:right"><a href="index.jsp">Back to login</a></li>
+  <li style ="float:right"><a href="editUserInformation.jsp">Edit information</a></li>
+
+
+</ul>
+
+
 
 </body>
 </html>

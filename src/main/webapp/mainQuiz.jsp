@@ -5,7 +5,6 @@
 <%@ page import="com.QuizApplication.model.Quiz" %>
 <%@ page import="com.QuizApplication.model.Question" %>
 
-
 <html>
  <head>
     <!-- This will make the table look nicer -->
@@ -18,6 +17,50 @@
      <link rel="stylesheet" href="styles.css">
   </head>
 <body>
+
+<h1> Quiz </h1>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
+
+
+<ul>
+
+  <li><a href="toCreateAQuiz.jsp">Create Quiz</a></li>
+  <li><a href="toAddQuiz.jsp">Add quiz</a></li>
+  <li><a href="toDeleteQuiz.jsp">Delete quiz</a></li>
+  <li><a href="toUpdateQuiz.jsp">Update quiz</a></li>
+  <li><a href="findQuizById.jsp">Search by Id</a></li>
+  <li><a href="findQuizByName.jsp">Search by Name</a></li>
+  <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
+
+
+</ul>
+
 <%
   if (session.getAttribute("confirmationMessage") != null) { %>
             <p><%= session.getAttribute("confirmationMessage") %></p>
