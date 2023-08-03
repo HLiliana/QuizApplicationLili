@@ -13,6 +13,8 @@ import java.util.Set;
 @WebServlet("/quiz")
 @PersistenceContext
 public class QuizRepository {
+
+
     EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
     EntityManager entityManager = emFactory.createEntityManager();
     private List<Quiz> quizList;
