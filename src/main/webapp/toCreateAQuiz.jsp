@@ -1,3 +1,10 @@
+<html>
+<head>
+<link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+
 <h1> Here we are creating a Quiz</h1>
 
 <h2>Add a quiz</h2>
@@ -19,3 +26,6 @@
      <br/>
      <input type="submit" value="Create quiz" class="btn btn-primary btn-block"/>
      </form>
+
+</body>
+</html>

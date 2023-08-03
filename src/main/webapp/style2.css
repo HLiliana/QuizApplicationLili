@@ -1,0 +1,21 @@
+body {
+  background-image: url('quizBlueBackground.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  color: D18812;
+  margin: 0 0 0 0;
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+}
+
+.center {
+  border: none;
+  margin: 100 0 0 600;
+  width: 50%;
+  padding: 5px;
+}
+
+.h1 {
+text-align: center;
+}
