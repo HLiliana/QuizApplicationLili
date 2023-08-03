@@ -59,6 +59,7 @@ li a:hover {
 
 
 </ul>
+<div style="overflow:scroll; height:400px; width:600px;">
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">
