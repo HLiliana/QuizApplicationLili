@@ -11,7 +11,7 @@
      <form action="findQuestionById.jsp">
 
          <div class="form-outline mb-4">
-         <input type="text" name="id" value="Enter question ID..." onclick="this.value=''"/><br/>
+         <input type="text" name="id" value="Enter question ID..." onclick="this.value=''" required/><br/>
          </div>
          <br/>
          <input type="submit" value="Find" class="btn btn-primary btn-block"/>

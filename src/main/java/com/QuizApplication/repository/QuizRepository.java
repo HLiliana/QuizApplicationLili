@@ -141,7 +141,7 @@ public class QuizRepository {
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            throw new BusinessException("Quiz cannot be null");
+            throw new BusinessException("Quiz cannot be found in database.");
         } finally {
             entityManager.close();
         }
