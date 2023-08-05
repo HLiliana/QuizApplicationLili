@@ -68,10 +68,15 @@ public class QuizRepository {
 //        emFactory.close();
 
     //}
-    public Quiz findByName(String name) {
-        Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name ILIKE :name", Quiz.class);
-        query.setParameter("name", name);
-        Quiz quiz = (Quiz) query.getSingleResult();
+    public Quiz findByName(String name) throws BusinessException {
+        Quiz quiz;
+        try {
+            Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name ILIKE :name", Quiz.class);
+            query.setParameter("name", name);
+            quiz = (Quiz) query.getSingleResult();
+        } catch (Exception e) {
+            throw new BusinessException("Quiz does not exist");
+        }
 
         return quiz;
     }
