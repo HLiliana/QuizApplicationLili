@@ -24,7 +24,6 @@
           }else {
           String confirmationMessageDelete = "Quiz was deleted";
 
-          request.getSession().invalidate();
           request.getSession().setAttribute("confirmationMessageDelete", confirmationMessageDelete);
           response.sendRedirect("mainQuiz.jsp");
                 }
@@ -36,9 +35,6 @@
 
         %>
 
-    <form action="mainQuiz.jsp">
-    <input type="submit" value="Back to Quiz" class="btn btn-primary btn-block"/>
-    </form>
 </body>
 
 </html>

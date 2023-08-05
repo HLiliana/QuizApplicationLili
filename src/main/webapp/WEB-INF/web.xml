@@ -14,5 +14,8 @@
         <exception-type>com.QuizApplication.exception.BusinessException</exception-type>
         <location>/webapp/errorUser.jsp</location>
     </error-page>
+    <session-config>
+        <session-timeout>1440</session-timeout><!-- 24hours -->
+    </session-config>
 
 </web-app>

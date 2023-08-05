@@ -19,7 +19,6 @@
 
         String confirmationMessage = "Your quiz has been updated.";
 
-        request.getSession().invalidate();
         request.getSession().setAttribute("confirmationMessage", confirmationMessage);
         response.sendRedirect("mainQuiz.jsp");
 
