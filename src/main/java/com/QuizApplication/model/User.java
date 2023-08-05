@@ -89,8 +89,4 @@ public class User {
         quizCustomList.add(quiz);
         return true;
     }
-    public List<Quiz> getAllQuizzesForSpecificUser(User user) {
-        List<Quiz> quizList = user.getQuizCustomList();
-        return quizList;
-    }
 }

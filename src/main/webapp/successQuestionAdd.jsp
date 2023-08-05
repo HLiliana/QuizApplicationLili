@@ -20,6 +20,7 @@
 <body>
 <h1>Welcome <%=session.getAttribute ("username")%></h1>
 
+<h1> All Questions available <h1/>
 <div style="overflow:scroll; height:400px; width:600px;">
 <table>
 

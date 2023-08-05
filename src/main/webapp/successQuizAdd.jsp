@@ -64,6 +64,7 @@
           <input type="submit" value="Delete quiz" class="btn btn-primary btn-block"/>
           </form>
 
+<h1>Find a Quiz by id</h1>
 
 <form action="findQuizById.jsp">
      <div class="form-outline mb-4">

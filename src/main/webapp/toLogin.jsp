@@ -30,17 +30,15 @@
          <% } %>
 
 
-</br>
-</br>
-</br>
+
+<h1> Login </h1>
 
 
                 <form action="login.jsp" method="post">
-                <strong>  Email</strong>:<input type="text" name="email" required>
+                <strong>Email</strong>:<input type="text" name="email" required>
                 <br>
                 <strong>Password</strong>:<input type="password" name="password" required>
                 <br>
-                </br>
                 <input type="submit" value="Login" class="btn btn-primary btn-block"/>
                 <br>
                 </form>
