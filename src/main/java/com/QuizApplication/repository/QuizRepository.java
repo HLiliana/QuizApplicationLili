@@ -68,13 +68,20 @@ public class QuizRepository {
 //        emFactory.close();
 
     //}
-//    public Quiz findByName(String name) throws Exception {
-//        Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name ILIKE :name", Quiz.class);
-//        query.setParameter("name", name);
-//        Quiz quiz = (Quiz) query.getSingleResult();
-//
-//        return quiz;
-//    }
+    public Quiz findByName(String name) {
+        Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name ILIKE :name", Quiz.class);
+        query.setParameter("name", name);
+        Quiz quiz = (Quiz) query.getSingleResult();
+
+        return quiz;
+    }
+
+        public Quiz findById(String id) throws BusinessException {
+        if (id == null) {
+            throw new BusinessException("Id cannot be null");
+        }
+        return entityManager.find(Quiz.class, id);
+    }
 
     public Quiz updateQuiz(String name, String newName, String newCategory, String newDifficulty) throws BusinessException {
 
@@ -154,12 +161,7 @@ public class QuizRepository {
 //
 //    }
 
-//    public Quiz findById(String id) throws Exception {
-//        if (id == null) {
-//            throw new Exception("Id cannot be null");
-//        }
-//        return entityManager.find(Quiz.class, id);
-//    }
+
     public Quiz createQuiz(String name,String category, String difficulty, List<Question> questions) throws BusinessException {
         Quiz quiz = new Quiz();
         if (isQuizDataValid(name)) {

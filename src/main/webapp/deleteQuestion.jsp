@@ -4,18 +4,23 @@
 
 
 <html>
-
+<head>
+<link rel="stylesheet" href="style2.css">
+</head>
 <body>
 
-<h1> We deleted a question </h1>
+<h1> Question deleted. </h1>
 
-
+    <form action="mainQuestion.jsp">
+        <br/>
+          <input type="submit" value="Back to questions" class="btn btn-primary btn-block"/>
+          </form>
 
     <%
-            String id = request.getParameter("id");
-            QuestionRepository repository = new QuestionRepository();
-            Question question = repository.findQuestionById(id);
-          repository.deleteQuestion(question);
+         String id = request.getParameter("id");
+         QuestionRepository repository = new QuestionRepository();
+         Question question = repository.findQuestionById(id);
+         repository.deleteQuestion(question);
 
         %>
 

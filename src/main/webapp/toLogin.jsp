@@ -32,6 +32,8 @@
 
 
 <h1> Login </h1>
+
+
                 <form action="login.jsp" method="post">
                 <strong>Email</strong>:<input type="text" name="email" required>
                 <br>

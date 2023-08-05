@@ -6,7 +6,6 @@
 <h1> The Quiz is updated </h1>
 
 
-
 <table border="1" class="table table-dark w-25 p-3">
         <tr>
             <th>Name</th>

@@ -14,7 +14,7 @@
 
         String successMessage = "Quiz was added.";
         request.setAttribute("successMessage", successMessage);
-        request.getRequestDispatcher("successQuizAdd.jsp").forward(request, response);
+        request.getRequestDispatcher("mainQuiz.jsp").forward(request, response);
 
         } catch (BusinessException e) {
             request.setAttribute("errorMessage", e.getMessage());

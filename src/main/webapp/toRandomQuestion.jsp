@@ -1,4 +1,7 @@
 <html>
+<head>
+<link rel="stylesheet" href="style2.css">
+</head>
 <body>
 
 <h1> Here we are creating a random list of Questions</h1>
@@ -14,6 +17,7 @@
          <div class="form-outline mb-4">
                   <input type="text" name="difficulty" value="Enter difficulty..." onclick="this.value=''"/><br/>
                           </div>
+                          <br>
          <input type="submit" value="Create Random Questions" class="btn btn-primary btn-block"/>
          </form>
 

@@ -1,17 +1,21 @@
 
 <html>
+<head>
+<link rel="stylesheet" href="style2.css">
+</head>
 <body>
 
 <h2> Delete a quiz </h2>
-<form action="deleteQuiz.jsp" method="post">
-<label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-<label for="difficulty">Difficulty:</label>
-        <input type="text" id="difficulty" name="difficulty" required>
-        <br>
+
+<form action="deleteQuiz.jsp">
+         <div class="form-outline mb-4">
+             <input type="text" name="name" value="Name..." onclick="this.value=''" required/><br/>
+         </div>
+         <div class="form-outline mb-4">
+             <input type="text" name="difficulty"  value="Difficulty..." onclick="this.value=''" required/><br/>
+         </div>
           <input type="submit" value="Delete a quiz"/>
-        </form>
+         </form>
 
 </body>
 </html>

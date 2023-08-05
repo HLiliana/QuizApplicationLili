@@ -53,8 +53,8 @@ li a:hover {
   <li><a href="toAddQuestion.jsp">Add question</a></li>
   <li><a href="toRandomQuestion.jsp">Create random questions</a></li>
   <li><a href="toUpdateQuestion.jsp">Update question</a></li>
-  <li><a href="deleteQuestion.jsp">Delete question</a></li>
-  <li><a href="findQuestionById.jsp">Search by Id</a></li>
+  <li><a href="toDeleteQuestion.jsp">Delete question</a></li>
+  <li><a href="toFindQuestionById.jsp">Search by Id</a></li>
   <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
 
 
