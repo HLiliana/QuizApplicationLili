@@ -31,25 +31,43 @@
                 <p><%= session.getAttribute("successMessage") %></p>
                 <% session.removeAttribute("successMessage"); %>
             <% } %>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
 
 
-<nav class="navbar" style="background-color: #9ad9ea;" >
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="login.jsp">Quiz Application</a>
-    </div>
-    <ul class="nav navbar-nav">
-     <li><a class = "text-primary" href="mainQuiz.jsp">Quiz Page</a></li>
-      <li><a href="mainQuestion.jsp">Question page</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="signup.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
+<ul>
+  <li><a href="quiz.jsp">Play quiz</a></li>
+    <li style="float:right"><a href="index.jsp">Sign out</a></li>
+  <li style ="float:right"><a href="editUserInformation.jsp">Edit information</a></li>
 
-<div class="container">
+
+</ul>
+
 <h1>Welcome <%= username %></h1>
 </div>
 

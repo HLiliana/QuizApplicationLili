@@ -1,6 +1,8 @@
 <html>
 <body>
-
+<head>
+<link rel="stylesheet" href="style2.css">
+</head>
 <h3> You have entered a wrong quiz id </h3>
 <h3>Please use a valid Id</h3>
 

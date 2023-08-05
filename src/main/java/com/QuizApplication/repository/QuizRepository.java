@@ -127,25 +127,21 @@ public class QuizRepository {
         return data.matches(dataValidation);
     }
 
-    public boolean deleteQuiz(String name, String difficulty) throws BusinessException {
+    public boolean deleteQuiz(String name) throws BusinessException {
         if (!isQuizDataValid(name)) {
             throw new BusinessException("Name cannot be empty or is not correct");
-        }
-        if (!isQuizDataValid(difficulty)) {
-            throw new BusinessException("Difficulty cannot be empty or is not correct");
         }
         try {
 
             entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name  ILIKE :name AND q.difficulty ILIKE :difficulty", Quiz.class);
+            Query query = entityManager.createQuery("SELECT q FROM Quiz q WHERE q.name  ILIKE :name", Quiz.class);
             query.setParameter("name", name);
-            query.setParameter("difficulty", difficulty);
             Quiz quiz = (Quiz) query.getSingleResult();
             entityManager.remove(quiz);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            throw new BusinessException("Quiz cannot be null");
+            throw new BusinessException("Quiz cannot be found in database.");
         } finally {
             entityManager.close();
         }
