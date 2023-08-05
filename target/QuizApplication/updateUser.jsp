@@ -1,49 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII" errorPage="errorUser.jsp"%>
-<%@ page import="java.util.List" %>
 <%@ page import="com.QuizApplication.model.User" %>
 <%@ page import="com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
-<html>
-<head>
-     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-   <title>Update User Page</title>
-</head>
-<body>
-<%
-    String newUsername = request.getParameter("newUsername");
-    String newPassword = request.getParameter("newPassword");
-    String confirmPassword = request.getParameter("confirmPassword");
-    String email = request.getParameter("email");
-    String newPhone = request.getParameter("newPhone");
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    String redirectTo = "editUserInformation";
+<%
+    String username = request.getParameter("username");
+    String password = request.getParameter("password");
+    String phone = request.getParameter("phone");
+
     UserRepository userRepository = new UserRepository();
 
-    if (newPassword.equals(confirmPassword)) {
-        try {
-            User user = userRepository.updateUserByEmail(newUsername, newPassword, email, newPhone);
-            if (user != null) {
-            String confirmationMessage = "Your account information has been updated. Please log in again.";
-
-            // Invalidate the current session
-            request.getSession().invalidate();
-            request.getSession().setAttribute("confirmationMessage", confirmationMessage);
-            response.sendRedirect("index.jsp");
-            } else {
-                    request.getSession().invalidate();
-                    request.getSession().setAttribute("redirectTo", redirectTo);
-                    response.sendRedirect("editUserInformation.jsp");
-            }
-        } catch (BusinessException e) {
-                request.getSession().setAttribute("redirectTo", redirectTo);
-                request.setAttribute("errorMessage", e.getMessage());
-                request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+    try {
+        User user = userRepository.updateUserByEmail(username, password, email, phone);
+        if (user != null) {
+            request.setAttribute("successMessage", "Account information updated successfully.");
+        } else {
+            request.setAttribute("errorMessage", "Failed to update account information.");
         }
-    } else {
-            request.getSession().setAttribute("redirectTo", redirectTo);
-            request.setAttribute("errorMessage", "Passwords do not match. Please try again.");
-            request.getRequestDispatcher("errorUser.jsp").forward(request, response);
+    } catch (BusinessException e) {
+        request.setAttribute("The user information could not be updated", e.getMessage());
     }
+
+    // Forward the control back to the original JSP page
+    request.getRequestDispatcher("editUserInformation.jsp").forward(request, response);
 %>
-</body>
-</html>

@@ -6,6 +6,10 @@
 
 <body>
 
+<h1> We deleted a quiz </h1>
+
+
+
 <%
       String name = request.getParameter("name");
 

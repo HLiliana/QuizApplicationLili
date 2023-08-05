@@ -1,6 +1,5 @@
 <%@ page import="com.QuizApplication.model.Quiz, com.QuizApplication.repository.QuizRepository" %>
 <%@ page import="com.QuizApplication.model.Question" %>
-<%@ page import="com.QuizApplication.exception.BusinessException" %>
 
 <html>
 
@@ -11,28 +10,10 @@
 
 
     <%
-            String name = request.getParameter("name");
-            String difficulty = request.getParameter("difficulty");
-
+            String id = request.getParameter("id");
               QuizRepository repository = new QuizRepository();
-              try{
-              boolean isDeleted = repository.deleteQuiz(name,difficulty);
-                if(!isDeleted){
-                request.setAttribute("errorMessage", "Something went wrong");
-                response.sendRedirect("errorQuizAdd.jsp");
-
-                }else {
-              String confirmationMessageDelete = "Quiz was deleted";
-
-              request.getSession().invalidate();
-                      request.getSession().setAttribute("confirmationMessageDelete", confirmationMessageDelete);
-                      response.sendRedirect("mainQuiz.jsp");
-                    }
-                     } catch(BusinessException e){
-                request.setAttribute("errorMessage", e.getMessage());
-                request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
-                      }
-
+              Quiz quiz = repository.findById(id);
+          repository.deleteQuiz(quiz);
 
         %>
 
