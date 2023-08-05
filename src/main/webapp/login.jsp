@@ -30,6 +30,8 @@ try{
 
     if (isAuthenticated) {
         String username = userRepository.getUsernameByEmail(email);
+        User authenticatedUser = userRepository.getUserByEmail(email);
+        session.setAttribute("authenticatedUser", authenticatedUser);
 
         session.setAttribute("username", username);
         session.setAttribute("loggedInEmail", email);

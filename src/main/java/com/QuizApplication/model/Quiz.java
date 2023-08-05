@@ -35,6 +35,10 @@ public class Quiz {
     @Fetch(FetchMode.JOIN)
     private List<Question> questionList;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
+    private User user;
+
     public String getQuestionsAsCsv(){
         return getQuestionList().stream().map(Question::getQuestionDescription).collect(Collectors.joining(", "));
     }

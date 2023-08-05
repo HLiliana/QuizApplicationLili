@@ -1,6 +1,7 @@
 package com.QuizApplication.repository;
 
 import com.QuizApplication.exception.BusinessException;
+import com.QuizApplication.model.Quiz;
 import com.QuizApplication.model.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -207,6 +208,22 @@ public class UserRepository {
             } finally {
                 entityManager.close();
             }
+        }
+    }
+    public void addQuizToUserToDatabase(User user, Quiz quiz) throws BusinessException {
+        try {
+            if (user.addQuizToUser(quiz)) {
+                try (EntityManager entityManager = emFactory.createEntityManager()) {
+                    entityManager.getTransaction().begin();
+                    quiz.setUser(user);
+                    entityManager.persist(quiz);
+                    entityManager.getTransaction().commit();
+                } catch (RuntimeException e) {
+                    throw new BusinessException("Internal problem with adding to data base.");
+                }
+            }
+        } catch (RuntimeException e) {
+            throw new BusinessException("Internal problem starting our data base.");
         }
     }
 
