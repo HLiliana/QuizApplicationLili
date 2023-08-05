@@ -1,5 +1,6 @@
 <%@ page import="com.QuizApplication.model.Quiz, com.QuizApplication.repository.QuizRepository" %>
 <%@ page import="com.QuizApplication.model.Question" %>
+<%@ page import="com.QuizApplication.model.User, com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
 
 <%
@@ -7,10 +8,13 @@
         String category = request.getParameter("category");
         String difficulty = request.getParameter("difficulty");
 
+        User authenticatedUser = (User) session.getAttribute("authenticatedUser");
+
     try{
         Quiz quiz = new Quiz(name,category,difficulty);
-        QuizRepository repository = new QuizRepository();
-        repository.addQuiz(quiz);
+
+        UserRepository repository = new UserRepository();
+        repository.addQuizToUserToDatabase(authenticatedUser,quiz);
 
         String successMessage = "Quiz was added.";
         request.setAttribute("successMessage", successMessage);
