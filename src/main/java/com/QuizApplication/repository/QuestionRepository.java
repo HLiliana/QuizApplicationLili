@@ -2,6 +2,7 @@ package com.QuizApplication.repository;
 
 import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.Question;
+import com.QuizApplication.model.Quiz;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -112,13 +113,72 @@ public class QuestionRepository {
             throw new Exception("There is no question");
 
         }
-        entityManager.getTransaction().begin();
-        entityManager.merge(question);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        emFactory.close();
 
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(question);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            emFactory.close();
+        } catch (NoResultException e) {
+            throw new Exception("Cannot update");
+        }
     }
+//public Question updateQuestion(String id, String newCategory, String newDifficulty, String newCorrectAnswer, String newIncorrectAnswer1, String newIncorrectAnswer2, String newIncorrectAnswer3, String newQuestionDescription) throws BusinessException {
+//
+//    entityManager.getTransaction().begin();
+//    try {
+//        Query query = entityManager.createQuery("SELECT q FROM Question q WHERE q.id ILIKE :id", Question.class);
+//        query.setParameter("id", id);
+//        Question question = (Question) query.getSingleResult();
+//        if (id!= null) {
+//
+//            if (newCategory!=null) {
+//                question.setCategory(newCategory);
+//            } else {
+//                throw new BusinessException("Question category cannot be null");
+//            }
+//            if (newDifficulty != null) {
+//                question.setDifficulty(newDifficulty);
+//            } else {
+//                throw new BusinessException("Question category cannot be null");
+//            }
+//            if (newCorrectAnswer != null) {
+//                question.setCorrectAnswer(newCorrectAnswer);
+//            } else {
+//                throw new BusinessException("Question correctAnswer cannot be null");
+//            }
+//            if (newIncorrectAnswer1 != null) {
+//                question.setIncorrectAnswer1(newIncorrectAnswer1);
+//            } else {
+//                throw new BusinessException("Question incorrectAnswer1 cannot be null");
+//            }
+//            if (newIncorrectAnswer2 != null) {
+//                question.setIncorrectAnswer2(newIncorrectAnswer2);
+//            } else {
+//                throw new BusinessException("Question incorrectAnswer2 cannot be null");
+//            }
+//            if (newIncorrectAnswer3 != null) {
+//                question.setIncorrectAnswer3(newIncorrectAnswer3);
+//            } else {
+//                throw new BusinessException("Question incorrectAnswer3 cannot be null");
+//            }
+//            if (newQuestionDescription != null) {
+//                question.setQuestionDescription(newQuestionDescription);
+//            } else {
+//                throw new BusinessException("Question question description cannot be null");
+//            }
+//            question = entityManager.merge(question);
+//            entityManager.getTransaction().commit();
+//            return question;
+//        } else {
+//            throw new BusinessException("Name and new name cannot be the same.");
+//        }
+//    } catch (NoResultException e) {
+//        entityManager.getTransaction().rollback();
+//        throw new BusinessException("Quiz cannot be found in database.");
+//    }
+//}
 
     public Question getQuestionsFromApi() throws BusinessException {
         HttpClient client = HttpClient.newHttpClient();

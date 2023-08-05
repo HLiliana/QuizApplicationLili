@@ -20,3 +20,29 @@
 
     <input type="submit" value="Update quiz" class="btn btn-primary btn-block" />
 </form>
+
+
+
+                            Question question = repository.findQuestionById(id);
+                            question.setQuestionDescription(questionDescription);
+                            question.setCategory(category);
+                            question.setDifficulty(difficulty);
+                            question.setCorrectAnswer(correctAnswer);
+                            question.setIncorrectAnswer1(incorrectAnswer1);
+                            question.setIncorrectAnswer2(incorrectAnswer2);
+                            question.setIncorrectAnswer3(incorrectAnswer3);
+
+
+                                                         try{
+                                                        repository.updateQuestion(id, newCategory, newDifficulty, newCorrectAnswer, newIncorrectAnswer1, newIncorrectAnswer2, newIncorrectAnswer3, newQuestionDescription);
+                                                                String confirmationMessageUpdateQuestion = "Your question has been updated.";
+                                                                request.getSession().invalidate();
+                                                                request.getSession().setAttribute("confirmationMessageUpdateQuestion", confirmationMessageUpdateQuestion);
+                                                                response.sendRedirect("mainQuestion.jsp");
+
+                                                            } catch(BusinessException e){
+
+                                                                request.setAttribute("errorMessage", e.getMessage());
+                                                                request.getRequestDispatcher("errorQuizAdd.jsp").forward(request, response);
+                                                                    }
+                                           %>
