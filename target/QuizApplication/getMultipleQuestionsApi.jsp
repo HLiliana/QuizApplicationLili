@@ -12,11 +12,11 @@
         for (Question generatedQuestion : generatedList) {
             String generatedCategory = generatedQuestion.getCategory();
             String generatedDifficulty = generatedQuestion.getDifficulty();
-            String generatedQuestionDescription = generatedQuestion.getQuestionDescription();
             String generatedCorrectAnswer = generatedQuestion.getCorrectAnswer();
             String generatedIncorrectAnswer1 = generatedQuestion.getIncorrectAnswer1();
             String generatedIncorrectAnswer2 = generatedQuestion.getIncorrectAnswer2();
             String generatedIncorrectAnswer3 = generatedQuestion.getIncorrectAnswer3();
+            String generatedQuestionDescription = generatedQuestion.getQuestionDescription();
 
             repository.addQuestion(generatedQuestion);
 %>

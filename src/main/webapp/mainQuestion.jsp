@@ -19,7 +19,6 @@
   </head>
 <body>
 
-<h1> Question </h1>
 <style>
 
 ul {
@@ -59,7 +58,14 @@ li a:hover {
 
 
 </ul>
-<div style="  width: 75%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="  width: 70%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
 
 <table>
 
@@ -99,78 +105,6 @@ li a:hover {
                <% } %>
 </table>
   </div>
-
-<form action="toRandomQuestion.jsp">
-         <input type="submit" value="Create Random Questions" class="btn btn-primary btn-block"/>
-         </form>
-
-  <form action="getQuestionApi.jsp" method="GET">
-
-            <input type="submit" name="getQuestionApi" value="Generate Question" class="btn btn-primary btn-block"/>
-        </form>
-
-  <form action="getMultipleQuestionsApi.jsp" method="GET">
-
-            <input type="submit" name="getMultipleQuestionApi" value="Generate multiple question" class="btn btn-primary btn-block"/>
-        </form>
-
-            issue here
-         <h2>Add a question</h2>
-
-            <form action="toAddQuestion.jsp">
-            <input type="submit" value="Add a Question" class="btn btn-primary btn-block"/>
-            </form>
-
-   <%-- <h2>Find a Question by id</h2> --%>
-
-    <form action="findQuestionById.jsp">
-         <div class="form-outline mb-4">
-         <input type="text" name="id" value="Enter Id..." onclick="this.value=''"/><br/>
-                 </div>
-         <input type="submit" value="Find question" class="btn btn-primary btn-block"/>
-         </form>
-
- <br/>
-
-    <%-- <h2>Find a Question by description</h2> --%>
-
-     <form action="findQuestionByDescription.jsp">
-          <div class="form-outline mb-4">
-                      <input type="text" name="questionDescription" value="Enter Description..." onclick="this.value=''"/><br/>
-                  </div>
-
-             <input type="submit" value="Find question" class="btn btn-primary btn-block"/>
-             </form>
-
-    <br/>
-
- <%-- <h2>Update a Question</h2> --%>
-
-            <form action="toUpdateQuestion.jsp">
-            <input type="submit" value="Update a Question" class="btn btn-primary btn-block"/>
-            </form>
-
-          <br/>
-
-<%-- <h2>Delete question</h2> --%>
-
-            <form action="deleteQuestion.jsp">
-
-                   <div class="form-outline mb-4">
-                            <input type="text" name="id" value="Enter ID..." onclick="this.value=''"/><br/>
-                   </div>
-
-            <input type="submit" value="Delete question" class="btn btn-primary btn-block"/>
-            </form>
-            <form action="index.jsp">
-                <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
-                </form>
-                <form action="welcomeUser.jsp">
-                    <input type="submit" value="Back to Main Page" class="btn btn-primary btn-block"/>
-                    </form>
-                    <form action="logout.jsp">
-                                    <input type="submit" value="Logout" class="btn btn-primary btn-block"/>
-                                    </form>
 
 </body>
 </html>

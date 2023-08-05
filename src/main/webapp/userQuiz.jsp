@@ -50,25 +50,50 @@ li a:hover {
 
 
 <ul>
-
-  <li><a href="userQuiz.jsp">My quizzes</a></li>
-  <li><a href="toFindQuizById.jsp">Search by Id</a></li>
-  <li><a href="toFindQuizByName.jsp">Search by Name</a></li>
+  <li><a href="toCreateAQuiz.jsp">Create Quiz</a></li>
+  <li><a href="toAddQuiz.jsp">Add quiz</a></li>
+  <li><a href="toDeleteQuiz.jsp">Delete quiz</a></li>
+  <li><a href="toUpdateQuiz.jsp">Update quiz</a></li>
   <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
 
 </ul>
-<%
-  if (session.getAttribute("successMessageAddQuiz") != null) { %>
-            <p><%= session.getAttribute("successMessageAddQuiz") %></p>
-            <% session.removeAttribute("successMessageAddQuiz"); %>
-         <% } %>
-         <%
-           if (session.getAttribute("confirmationMessageDelete") != null) { %>
-                     <p><%= session.getAttribute("confirmationMessageDelete") %></p>
-                     <% session.removeAttribute("confirmationMessageDelete"); %>
-                  <%
-                  } %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="  width: 70%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
 
- <br/>
+<table>
+
+   <table border="1" class="table table-striped table-hover w-50 p-3">
+      <thread>
+       <tr>
+           <th>Name</th>
+           <th>Category</th>
+           <th>Difficulty</th>
+           <th>Play Quiz</th>
+
+       </tr>
+       </thread>
+<%
+        User authenticatedUser = (User) session.getAttribute("authenticatedUser");
+
+        List<Quiz> userList  = authenticatedUser.getAllQuizzesForSpecificUser(authenticatedUser);
+
+        for(Quiz quiz : userList){
+        %>
+        <tr>
+            <td><%=quiz.getName() %></td>
+            <td><%=quiz.getCategory() %></td>
+            <td><%=quiz.getDifficulty() %></td>
+            <td><input type="submit" value="Play Quiz"/>
+        </tr>
+        <%
+        } %>
+</table>
+</div>
 </body>
 </html>

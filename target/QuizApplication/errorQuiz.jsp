@@ -6,7 +6,7 @@
 
 <form action="findQuizById.jsp">
      <div class="form-outline mb-4">
-                 <input type="text" name="id" value="Name..." onclick="this.value=''"/><br/>
+                 <input type="text" name="id" value="Id..." onclick="this.value=''"/><br/>
              </div>
      <br/>
         <input type="submit" value="Find quiz" class="btn btn-primary btn-block"/>

@@ -15,14 +15,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
 <body>
 
+<h1> Question </h1>
+<style>
 
-<h1> Table for question <h1/>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D18812;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: blue;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #c7d112;
+}
+</style>
+
+
+<ul>
+  <li><a href="toAddQuestion.jsp">Add question</a></li>
+  <li><a href="toRandomQuestion.jsp">Create random questions</a></li>
+  <li><a href="toUpdateQuestion.jsp">Update question</a></li>
+  <li><a href="deleteQuestion.jsp">Delete question</a></li>
+  <li><a href="findQuestionById.jsp">Search by Id</a></li>
+  <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
+
+
+</ul>
+<div style="overflow:scroll; height:400px; width:600px;">
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">
+
        <tr>
            <th>ID</th>
            <th>Question</th>
@@ -52,7 +93,11 @@
                    </tr>
                <% } %>
 </table>
+  </div>
 
+<form action="toRandomQuestion.jsp">
+         <input type="submit" value="Create Random Questions" class="btn btn-primary btn-block"/>
+         </form>
 
   <form action="getQuestionApi.jsp" method="GET">
 
@@ -112,5 +157,15 @@
 
             <input type="submit" value="Delete question" class="btn btn-primary btn-block"/>
             </form>
+            <form action="index.jsp">
+                <input type="submit" value="Back to Login" class="btn btn-primary btn-block"/>
+                </form>
+                <form action="welcomeUser.jsp">
+                    <input type="submit" value="Back to Main Page" class="btn btn-primary btn-block"/>
+                    </form>
+                    <form action="logout.jsp">
+                                    <input type="submit" value="Logout" class="btn btn-primary btn-block"/>
+                                    </form>
+
 </body>
 </html>
