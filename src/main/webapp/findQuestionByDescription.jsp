@@ -13,8 +13,6 @@
   </head>
 <body>
 
-<h1>Question is found</h1>
-
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">

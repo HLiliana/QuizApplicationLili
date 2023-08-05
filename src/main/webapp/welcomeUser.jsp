@@ -25,7 +25,6 @@
 <title>Welcome to the Quiz Application!</title>
 </head>
 <body>
-    <h1>Welcome <%= username %></h1>
 <style>
 
 ul {
@@ -56,12 +55,13 @@ li a:hover {
 
 
 <ul>
-  <li><a href="quiz.jsp">Play quiz</a></li>\
+  <li><a href="quiz.jsp">Play quiz</a></li>
     <li style="float:right"><a href="index.jsp">Sign out</a></li>
-  <li style ="float:right"><a href="editUserInformation.jsp">Edit information</a></li>
+  <li style ="float:right"><a href="editUserInformation.jsp">Edit Profile</a></li>
 
 
 </ul>
+    <h1>Welcome <%= username %></h1>
 
 
 

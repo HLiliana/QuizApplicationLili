@@ -34,7 +34,7 @@
 
 
      <br/>
-     <input type="submit" value="Add question" class="btn btn-primary btn-block"/>
+     <input type="submit" value="Update Question" class="btn btn-primary btn-block"/>
      </form>
 
 </body>

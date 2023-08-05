@@ -18,8 +18,6 @@
 </head>
 <body>
 
-<h1> Welcome to Quiz ME! </h1>
-
 <style>
 ul {
   list-style-type: none;
@@ -54,6 +52,7 @@ li a:hover {
 
 
 </ul>
+<h1> Welcome to Quiz ME! </h1>
 
 </body>
 </html>

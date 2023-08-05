@@ -24,8 +24,9 @@
 
    <div class="form-outline mb-4">
                 <input type="text" name="newDifficulty" value="New difficulty..." onclick="this.value=''" required/>
-                <br/>
+                <br>
                     </div>
+                    <br>
                 <input type="submit" value="Update quiz by name"/>
     </form>
 

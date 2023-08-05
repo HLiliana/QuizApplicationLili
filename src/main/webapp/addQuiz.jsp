@@ -3,6 +3,9 @@
 <%@ page import="com.QuizApplication.model.User, com.QuizApplication.repository.UserRepository" %>
 <%@ page import="com.QuizApplication.exception.BusinessException" %>
 
+<html>
+
+<body>
 <%
         String name = request.getParameter("name");
         String category = request.getParameter("category");
@@ -16,9 +19,10 @@
         UserRepository repository = new UserRepository();
         repository.addQuizToUserToDatabase(authenticatedUser,quiz);
 
-        String successMessage = "Quiz was added.";
-        request.setAttribute("successMessage", successMessage);
-        request.getRequestDispatcher("mainQuiz.jsp").forward(request, response);
+        String successMessageAddQuiz = "Quiz was added.";
+
+        request.getSession().setAttribute("successMessageAddQuiz", successMessageAddQuiz);
+        response.sendRedirect("mainQuiz.jsp");
 
         } catch (BusinessException e) {
             request.setAttribute("errorMessage", e.getMessage());
@@ -26,3 +30,6 @@
         }
     %>
 
+</body>
+
+</html>

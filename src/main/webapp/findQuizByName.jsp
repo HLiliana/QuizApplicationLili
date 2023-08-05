@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
   </head>
 <body>
-<h1>Quiz is found</h1>
-    <table border="1" class="table table-dark w-25 p-3">
+
+<table border="1" class="table table-dark w-25 p-3">
         <tr>
             <th>ID</th>
             <th>Name</th>

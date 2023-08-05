@@ -54,8 +54,8 @@ li a:hover {
   <li><a href="toAddQuiz.jsp">Add quiz</a></li>
   <li><a href="toDeleteQuiz.jsp">Delete quiz</a></li>
   <li><a href="toUpdateQuiz.jsp">Update quiz</a></li>
-  <li><a href="findQuizById.jsp">Search by Id</a></li>
-  <li><a href="findQuizByName.jsp">Search by Name</a></li>
+  <li><a href="toFindQuizById.jsp">Search by Id</a></li>
+  <li><a href="toFindQuizByName.jsp">Search by Name</a></li>
   <li style="float:right"><a href="welcomeUser.jsp">Homepage</a></li>
 
 

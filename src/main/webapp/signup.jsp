@@ -29,6 +29,7 @@
              <div class="form-outline mb-4">
                   <input type="text" name="phone" value="Phone number..." onclick="this.value=''" required/><br/>
               </div>
+              <br>
              <input type="submit" value="SignUp" class="btn btn-primary">
                <br>
                <br>
