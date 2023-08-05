@@ -25,7 +25,6 @@
                             try{
                             repository.updateQuestion(question);
                                     String confirmationMessageUpdateQuestion = "Your question has been updated.";
-                                    request.getSession().invalidate();
                                     request.getSession().setAttribute("confirmationMessageUpdateQuestion", confirmationMessageUpdateQuestion);
                                     response.sendRedirect("mainQuestion.jsp");
 

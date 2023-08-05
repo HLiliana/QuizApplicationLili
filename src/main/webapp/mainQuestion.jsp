@@ -59,12 +59,7 @@ li a:hover {
 
 
 </ul>
-<div style="  width: 65%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll;"
-
-
-<div style="overflow:scroll; height:400px; width:1000px;">
-
-
+<div style="  width: 75%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
 
 <table>
 
