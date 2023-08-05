@@ -59,20 +59,29 @@ li a:hover {
 
 
 </ul>
-<div style="overflow:scroll; height:400px; width:600px;">
+<div style="  width: 65%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll;"
+
+
+<div style="overflow:scroll; height:400px; width:1000px;">
+
+
+
 <table>
 
    <table border="1" class="table table-striped table-hover w-50 p-3">
 
        <tr>
-           <th>ID</th>
+
+
+           <th>Number</th>
            <th>Question</th>
            <th>Category</th>
            <th>Difficulty</th>
-           <th>Correct Answer</th>
-           <th>Incorrect Answer1</th>
-           <th>Incorrect Answer2</th>
-           <th>Incorrect Answer3</th>
+           <th>Answer 1</th>
+           <th>Answer 2</th>
+           <th>Answer 3</th>
+           <th>Answer 4</th>
+           <th>Submit answer</th>
 
 
            </tr>
@@ -86,10 +95,11 @@ li a:hover {
                        <td><%= question.getQuestionDescription() %></td>
                        <td><%= question.getCategory() %></td>
                        <td><%= question.getDifficulty() %></td>
-                       <td><%= question.getCorrectAnswer() %></td>
-                       <td><%= question.getIncorrectAnswer1() %></td>
-                       <td><%= question.getIncorrectAnswer2() %></td>
-                       <td><%= question.getIncorrectAnswer3() %></td>
+                       <td><input type="checkbox"> <%= question.getCorrectAnswer() %></td>
+                       <td><input type="checkbox"> <%= question.getIncorrectAnswer1() %></td>
+                       <td><input type="checkbox"> <%= question.getIncorrectAnswer2() %></td>
+                       <td><input type="checkbox"> <%= question.getIncorrectAnswer3() %></td>
+                       <td><input type="submit" value="Submit answer"/>
                    </tr>
                <% } %>
 </table>

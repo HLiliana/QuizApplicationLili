@@ -2,7 +2,6 @@ package com.QuizApplication.repository;
 
 import com.QuizApplication.exception.BusinessException;
 import com.QuizApplication.model.Question;
-import com.QuizApplication.model.Quiz;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -14,12 +13,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-
-import static java.util.Arrays.stream;
 
 @PersistenceContext
 public class QuestionRepository {
@@ -268,13 +263,15 @@ public class QuestionRepository {
                 .mapToObj(i -> questionList.get(i)).
                 toList();
     }
-    public List<Question> groupByCategoryAndDifficulty (String category, String difficulty, List<Question> questionList) {
+
+    public List<Question> groupByCategoryAndDifficulty(String category, String difficulty, List<Question> questionList) {
 
         return questionList.stream()
                 .filter(question -> question.getCategory().equals(category) && question.getDifficulty().equals(difficulty))
                 .toList();
 
     }
+
     public List<Question> completeRandomQuestionList(String numberOfQuestions, List<Question> aQuestionList) throws BusinessException {
         Random rand = new Random();
         List<Question> aRandomList;
