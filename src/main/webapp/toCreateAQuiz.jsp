@@ -5,22 +5,20 @@
 
 <body>
 
-<h1> Here we are creating a Quiz</h1>
-
-<h2>Add a quiz</h2>
+<h1>Create quiz</h1>
 
      <form action="createQuiz.jsp">
          <div class="form-outline mb-4">
-             <input type="text" name="name" value="Name..." onclick="this.value=''"/><br/>
+             <input type="text" name="name" value="Name..." onclick="this.value=''" required/><br/>
          </div>
          <div class="form-outline mb-4">
-             <input type="text" name="category"  value="Category..." onclick="this.value=''"/><br/>
+             <input type="text" name="category"  value="Category..." onclick="this.value=''" required/><br/>
          </div>
          <div class="form-outline mb-4">
-             <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''"/><br/>
+             <input type="text" name="difficulty" value="Difficulty..." onclick="this.value=''" required/><br/>
          </div>
          <div class="form-outline mb-4">
-                  <input type="text" name="numberOfQuestions" value="Enter Number..." onclick="this.value=''"/><br/>
+                  <input type="text" name="numberOfQuestions" value="Enter Number..." onclick="this.value=''" required/><br/>
                           </div>
 
      <br/>

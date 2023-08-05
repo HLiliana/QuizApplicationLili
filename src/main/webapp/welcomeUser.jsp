@@ -57,7 +57,7 @@ li a:hover {
 
 <ul>
   <li><a href="quiz.jsp">Play quiz</a></li>\
-    <li style="float:right"><a href="index.jsp">Back to login</a></li>
+    <li style="float:right"><a href="index.jsp">Sign out</a></li>
   <li style ="float:right"><a href="editUserInformation.jsp">Edit information</a></li>
 
 

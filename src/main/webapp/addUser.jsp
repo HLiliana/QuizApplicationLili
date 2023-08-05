@@ -42,7 +42,7 @@
                     String successMessage = "User successfully added";
 
                     request.getSession().setAttribute("successMessage", successMessage);
-                    response.sendRedirect("successUserAdd.jsp");
+                    response.sendRedirect("welcomeUser.jsp");
                 } else {
                         request.getSession().invalidate();
                         request.getSession().setAttribute("redirectTo", redirectTo);

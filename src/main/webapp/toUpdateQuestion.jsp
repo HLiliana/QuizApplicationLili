@@ -4,9 +4,12 @@
 </head>
 <body>
 
-<h2>Add a new question</h2>
+<h2>Update question</h2>
 
-     <form action="addQuestion.jsp">
+     <form action="updateQuestion.jsp">
+             <div class="form-outline mb-4">
+                  <input type="text" name="id" value="Id..." onclick="this.value=''" required/><br/>
+              </div>
          <div class="form-outline mb-4">
              <input type="text" name="questionDescription" value="Question..." onclick="this.value=''" required/><br/>
          </div>
