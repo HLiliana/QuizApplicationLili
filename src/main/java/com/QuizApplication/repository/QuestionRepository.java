@@ -271,9 +271,8 @@ public class QuestionRepository {
     public List<Question> groupByCategoryAndDifficulty (String category, String difficulty, List<Question> questionList) {
 
         return questionList.stream()
-                .filter(question -> question.getCategory().equals(category) && question.getDifficulty().equals(difficulty))
+                .filter(question -> question.getCategory().equalsIgnoreCase(category) && question.getDifficulty().equalsIgnoreCase(difficulty))
                 .toList();
-
     }
     public List<Question> completeRandomQuestionList(String numberOfQuestions, List<Question> aQuestionList) throws BusinessException {
         Random rand = new Random();

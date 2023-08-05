@@ -46,34 +46,27 @@ public class User {
         this.email = email;
         this.phone = phone;
     }
-//
-//    public Quiz createQuiz(String name, String category, String difficulty, List<Question> questions) throws BusinessException {
-//        Quiz quiz = new Quiz();
-//        if (isQuizDataValid(name)) {
-//            quiz.setName(name);
-//        } else {
-//            throw new BusinessException("Quiz name should be at least 4 characters long and maxim 50 characters,"
-//                    + " must include only letters, digits and spaces.");
-//        }
-//        if (isQuizDataValid(category)) {
-//            quiz.setCategory(category);
-//        } else {
-//            throw new BusinessException("Quiz category should be at least 4 characters long and maxim 50 characters,"
-//                    + " must include only letters, digits and spaces.");
-//        }
-//        if (isQuizDataValid(difficulty)) {
-//            quiz.setDifficulty(difficulty);
-//        } else {
-//            throw new BusinessException("Quiz new difficulty should be at least 4 characters long and maxim 50 characters,"
-//                    + " must include only letters, digits and spaces.");
-//        }
-//        if (questions.size() > 0) {
-//            quiz.setQuestionList(questions);
-//        } else {
-//            throw new BusinessException("Quiz list of questions cannot be empty");
-//        }
-//        return quiz;
-//    }
+
+    public boolean createQuizByUser(String name, String category, String difficulty, List<Question> questions) throws BusinessException {
+        if (isQuizDataValid(name)) {
+            throw new BusinessException("Quiz name should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if (isQuizDataValid(category)) {
+            throw new BusinessException("Quiz category should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if (isQuizDataValid(difficulty)) {
+            throw new BusinessException("Quiz new difficulty should be at least 4 characters long and maxim 50 characters,"
+                    + " must include only letters, digits and spaces.");
+        }
+        if (questions.size()<4) {
+            throw new BusinessException("Quiz list of questions should have 4 answers");
+        }
+        Quiz quiz = new Quiz(name, category, difficulty, questions);
+        quizCustomList.add(quiz);
+        return true;
+    }
 
     public boolean isQuizDataValid(String data) {
         String dataValidation = "^[a-zA-Z0-9 ]{4,50}$";

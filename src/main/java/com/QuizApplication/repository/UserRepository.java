@@ -221,6 +221,8 @@ public class UserRepository {
                 } catch (RuntimeException e) {
                     throw new BusinessException("Internal problem with adding to data base.");
                 }
+            }else{
+                throw new BusinessException("Invalid user or quiz.");
             }
         } catch (RuntimeException e) {
             throw new BusinessException("Internal problem starting our data base.");
