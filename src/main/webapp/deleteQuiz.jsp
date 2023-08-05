@@ -12,11 +12,10 @@
 
 <%
       String name = request.getParameter("name");
-      String difficulty = request.getParameter("difficulty");
 
       QuizRepository repository = new QuizRepository();
       try{
-          boolean isDeleted = repository.deleteQuiz(name,difficulty);
+          boolean isDeleted = repository.deleteQuiz(name);
           if(!isDeleted){
           request.setAttribute("errorMessage", "Something went wrong");
                 response.sendRedirect("errorQuizAdd.jsp");
