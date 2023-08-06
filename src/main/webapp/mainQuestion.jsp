@@ -63,9 +63,8 @@ li a:hover {
 <br>
 <br>
 <br>
-<br>
-<br>
-<div style="  width: 70%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
+
+<div style="  width: 75%; margin: 0 auto; display:block; height: 500px; overflow-y:scroll; position: relative; display: flex; background-color: rgba(153,217,234, 0.9); text-color: white;"
 
 <table>
 
